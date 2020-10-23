@@ -1,0 +1,2 @@
+class Thanzi < ApplicationRecord
+end
