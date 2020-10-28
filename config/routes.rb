@@ -4,11 +4,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
       resources :airlines, param: :slug
-      resources :kanjis, param: :number
       resources :reviews, only: [:create, :destroy]
     end
   end
+
+  get 'api/v1/kanjis/page/:num' => 'api/v1/kanjis#page'
+  get 'api/v1/kanjis' => 'api/v1/kanjis#index'
 
   get '*path', to: 'pages#index', via: :all
 end

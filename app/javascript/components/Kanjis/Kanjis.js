@@ -14,6 +14,13 @@ const Home = styled.div`
 
 `
 
+// *** calculating the right pageNumber for some kanji and the corresponding first_kanji_number on that page ***
+
+// let num = kanji.number
+// let pageNumber = Math.ceil(kanji.number / 50)
+// let first_kanji_number = (pageNumber * 50) - 49
+// let last_kanji_number = pageNumber * 50
+
 const Kanjis = () => {
   const [kanjis, setKanjis] = useState([]);
 
@@ -21,7 +28,7 @@ const Kanjis = () => {
     // Get all of our kanjis from api
     // Update kanjis in our state
     axios
-      .get("/api/v1/kanjis.json")
+      .get("/api/v1/kanjis/page/1.json")
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
   }, [kanjis.length]);
