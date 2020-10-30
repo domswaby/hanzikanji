@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from "react";
-import Datatable from './Datatable/Datatable'
+import Datatable from "./Datatable/Datatable";
 import axios from "axios";
 import styled from "styled-components";
+import "./Slider.css";
 
 const Grid = styled.div`
   display: grid;
@@ -50,12 +51,32 @@ const Kanjis = () => {
   const data = kanjis.map((item) => {
     return item.attributes;
   });
-// <Grid>{grid}</Grid>
+  const moveSlider = (e) => {
+    let selector = document.getElementById("selector");
+    setPage(e.target.value);
+  };
+
+  const goNewPage = () => {
+    getKanjis();
+  }
+  // <Grid>{grid}</Grid>
   return (
     <Home>
-
+      <div className="slidecontainer">
+        <p>Current Page: #{page}</p>
+        <input
+          type="range"
+          min="1"
+          max="61"
+          onChange={moveSlider}
+          onMouseUp={goNewPage}
+          defaultValue={page}
+          value={page}
+          className="slider"
+          id="myRange"
+        />
+      </div>
       <Datatable data={data} />
-
     </Home>
   );
 };

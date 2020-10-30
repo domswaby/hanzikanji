@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import './Datatable.css'
 
 const Datatable = ({ data }) => {
   const columns = data[0] && Object.keys(data[0]);

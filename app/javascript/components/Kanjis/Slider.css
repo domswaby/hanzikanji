@@ -1,0 +1,60 @@
+.slidecontainer {
+  width: 60%;
+  margin: 24% auto;
+  position: relative;
+
+
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+#selector{
+   height: 104px;
+   width: 48px;
+   position: absolute;
+   bottom: -20px;
+   left: 50%;
+   transform: translateX(-50%);
+   z-index: 2;
+}
+.SelectBtn{
+  height: 25px;
+  width: 25px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 25px;
+  background-position: center;
+
+}
