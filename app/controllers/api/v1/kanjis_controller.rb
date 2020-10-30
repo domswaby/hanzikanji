@@ -22,6 +22,7 @@ module Api
         first_kanji = (pageNumber * 50) - 49
         last_kanji = pageNumber * 50
 
+
         kanjis = Kanji.where(number: first_kanji..last_kanji)
 
         render json: KanjiSerializer.new(kanjis, options).serialized_json
