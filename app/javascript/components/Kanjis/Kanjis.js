@@ -4,26 +4,12 @@ import axios from "axios";
 import styled from "styled-components";
 import "./Slider.css";
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  width: 100%;
-  padding: 20px;
-`;
-
 const Home = styled.div``;
 
-// *** calculating the right pageNumber for some kanji and the corresponding first_kanji_number on that page ***
-
-// let num = kanji.number
-// let pageNumber = Math.ceil(kanji.number / 50)
-// let first_kanji_number = (pageNumber * 50) - 49
-// let last_kanji_number = pageNumber * 50
-
-const Kanjis = () => {
+const Kanjis = (props) => {
+  const num = props.match.params.page;
   const [kanjis, setKanjis] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(num);
 
   useEffect(() => {
     // Get all of our kanjis from api
@@ -41,13 +27,6 @@ const Kanjis = () => {
       .catch((resp) => console.log(resp));
   };
 
-  const grid = kanjis.map((item) => {
-    return (
-      <div key={item.attributes.number} attributes={item.attributes}>
-        {item.attributes.meaning}
-      </div>
-    );
-  });
   const data = kanjis.map((item) => {
     return item.attributes;
   });
@@ -59,7 +38,7 @@ const Kanjis = () => {
   const goNewPage = () => {
     getKanjis();
   }
-  // <Grid>{grid}</Grid>
+
   return (
     <Home>
       <div className="slidecontainer">

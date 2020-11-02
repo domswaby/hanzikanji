@@ -14,20 +14,20 @@ export const SidebarData = [
     cName:'nav-text'
   },
   {
-    title: 'Cards',
-    path: '/kanjis',
+    title: 'List',
+    path: '/kanjis/2',
     icon: <GiCardRandom/>,
     cName:'nav-text'
   },
   {
-    title: 'List',
-    path: '/hanzis',
+    title: 'Cards',
+    path: '/kanji/3030',
     icon: <ImListNumbered/>,
     cName:'nav-text'
   },
   {
-    title: 'Support',
-    path: '/support',
+    title: 'Contact',
+    path: '/contact',
     icon: <IoIcons.IoMdHelpCircle/>,
     cName:'nav-text'
   }

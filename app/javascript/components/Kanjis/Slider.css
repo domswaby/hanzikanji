@@ -1,9 +1,7 @@
 .slidecontainer {
   width: 60%;
-  margin: 24% auto;
+  margin: 1em auto;
   position: relative;
-
-
 }
 
 .slider {
@@ -37,24 +35,4 @@
   height: 25px;
   background: #4CAF50;
   cursor: pointer;
-}
-
-#selector{
-   height: 104px;
-   width: 48px;
-   position: absolute;
-   bottom: -20px;
-   left: 50%;
-   transform: translateX(-50%);
-   z-index: 2;
-}
-.SelectBtn{
-  height: 25px;
-  width: 25px;
-  background: black;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 25px;
-  background-position: center;
-
 }
