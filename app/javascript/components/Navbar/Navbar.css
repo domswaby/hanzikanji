@@ -13,7 +13,7 @@
 }
 
 .nav-menu {
-  background-color: #060b26;
+  background-color: var(--light-gray);
   width: 250px;
   height: 100vh;
   display: flex;

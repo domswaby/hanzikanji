@@ -31,7 +31,7 @@ const Japanese = styled.div`
     padding: 3em;
     &:hover {
       cursor: pointer;
-      background: gray;
+      background: var(--strong-red);
     }
   }
   @media only screen and (max-width: 600px) {
