@@ -29,7 +29,7 @@ const CharPic = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     top: 0;
-    right: -7px;
+    right: 0;
     height: 80px;
     width: 87px;
 `;

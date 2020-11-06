@@ -17,9 +17,13 @@ const TwitterWrapper = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 2em;
+  a:link {
+    text-decoration: none;
+  }
   p {
     text-align: center;
   }
+
   div {
     text-align: center;
     margin: 0 0 0.5em 0;
@@ -56,7 +60,9 @@ function Contact() {
         <div>
           <FaTwitter />
         </div>
-        <p><a href="https://twitter.com/HanziKanjiCards">@HanziKanjiCards</a></p>
+        <p>
+          <a href="https://twitter.com/HanziKanjiCards">@HanziKanjiCards</a>
+        </p>
       </TwitterWrapper>
 
       <MailWrapper>

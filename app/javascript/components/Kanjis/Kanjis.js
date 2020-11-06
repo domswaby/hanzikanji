@@ -6,6 +6,10 @@ import "./Slider.css";
 
 const Home = styled.div``;
 
+const TableContainer = styled.div`
+  margin-bottom: 2em; 
+`;
+
 const Kanjis = (props) => {
   const num = props.match.params.page;
   const [kanjis, setKanjis] = useState([]);
@@ -37,7 +41,7 @@ const Kanjis = (props) => {
 
   const goNewPage = () => {
     getKanjis();
-  }
+  };
 
   return (
     <Home>
@@ -54,8 +58,10 @@ const Kanjis = (props) => {
           className="slider"
           id="myRange"
         />
-      </div>
-      <Datatable data={data} />
+    </div>
+      <TableContainer>
+        <Datatable data={data} />
+      </TableContainer>
     </Home>
   );
 };

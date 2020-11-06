@@ -20,7 +20,7 @@ const CardMeaning = styled.div`
   margin-bottom: 1em;
 `
 const CardStory = styled.div`
-  font-size: 1.5em;
+  font-size: 2em;
   display: flex;
   justify-content: center;
 `
@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1.5em;
 `
 
 const Card = ({ data }) => {

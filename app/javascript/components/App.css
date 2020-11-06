@@ -16,9 +16,15 @@
 }
 
 :root{
+  --light-black: rgba(26, 26, 26, 1);
   --light-gray: rgba(189, 189, 189, 1);
+  --light-gray-home: rgba(189, 189, 189, 0.5);
   --dark-red: rgba(137, 13, 14, 1);
+  --dark-red-home: rgba(137, 13, 14, 0.7);
   --strong-red: rgba(217, 28, 15, 1);
+  --strong-red-home: rgba(217, 28, 15, 0.7);
   --cream-white: rgba(254, 254, 254, 1);
+  --cream-white-home: rgba(254, 254, 254, 0.7);
   --dark-gray: rgba(72, 72, 72, 1);
+  --dark-gray-home: rgba(72, 72, 72, 0.6);
 }

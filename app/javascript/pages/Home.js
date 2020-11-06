@@ -3,11 +3,12 @@ import styled from "styled-components";
 import card_img from "./chinese_flashcards.jpg";
 import lake_kanji_img from "./lake_kanji_pic.png";
 import { GiCardRandom } from "react-icons/gi";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const Wrapper = styled.div``;
 
 const CardWrapper = styled.div`
-  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.6)),
+  background: linear-gradient(var(--strong-red-home), var(--cream-white-home)),
     url(${card_img});
   background-repeat: no-repeat;
   background-size: contain;
@@ -26,20 +27,36 @@ const Japanese = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  button {
-    font-size: 2em;
-    padding: 3em;
+  min-height: 5em;
+  .my-link > p {
+    font-weight: 400;
+  }
+  .my-link {
+    opacity: 0.95;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--dark-gray);
+    color: var(--cream-white);
+    text-align: center;
+    font-size: 3em;
+    min-height: 7em;
+    width: 80%;
+    border-radius: 15%;
+    transition: border-radius 0.3s;
     &:hover {
       cursor: pointer;
-      background: var(--strong-red);
+      border-radius: 0%;
+      background-color: var(--light-black);
     }
   }
   @media only screen and (max-width: 600px) {
     width: 100%;
-
-    button {
+    .my-link {
       width: 80%;
-      padding: 3em 1em;
+      font-size: 2em;
     }
   }
 `;
@@ -48,18 +65,37 @@ const Chinese = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  button {
-    font-size: 2em;
-    padding: 3em;
+  min-height: 5em;
+  .my-link > p {
+    font-weight: 400;
+  }
+  .my-link {
+    opacity: 0.95;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--dark-gray);
+    color: var(--cream-white);
+    text-align: center;
+    font-size: 3em;
+    min-height: 7em;
+    width: 80%;
+    border-radius: 10%;
+    transition: border-radius 0.3s;
     &:hover {
       cursor: pointer;
-      background: gray;
+      border-radius: 0%;
+      color: var(--cream-white);
+        background-color: var(--light-black);
     }
   }
   @media only screen and (max-width: 600px) {
     width: 100%;
-    button {
+    .my-link {
       width: 80%;
+      font-size: 2em;
     }
   }
 `;
@@ -67,27 +103,33 @@ const ExampleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1em;
+  margin: 0 1em 1em 1em;
+  border: 2px solid var(--dark-gray);
 `;
 const ExampleHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  font-size: 40px;
-  background-color: gray;
+  color: var(--light-black);
+  padding: 1.5em 0 1em 0;
+  font-size: 3em;
+  font-weight: 700;
+  background-color: var(--cream-white);
   p {
     padding: 18px 0;
     text-align: center;
     width: 90%;
   }
+    @media only screen and (max-width: 800px) {
+      font-size: 2em;
+    }
 `;
 const Example = styled.div`
   display: flex;
   align-items: stretch;
   height: calc(100vh - 160px);
   @media only screen and (max-width: 800px) {
-
     flex-direction: column;
     height: auto;
   }
@@ -124,7 +166,7 @@ const Back = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  color: white;
+  color: var(--cream-white);
   font-size: 4em;
   width: 50%;
   align-items: center;
@@ -133,14 +175,16 @@ const Back = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   span {
-    color: gray;
+    color: var(--dark-gray);
   }
   b {
-    color: red;
+    color: var(--strong-red);
   }
 
   p {
     width: 80%;
+    background-color: var(--light-gray-home);
+    padding: 0.5em;
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
@@ -160,7 +204,6 @@ const Footer = styled.div`
   text-align: center;
   color: white;
   background-color: black;
-
 `;
 const PartsWrapper = styled.div`
   text-align: left;
@@ -173,14 +216,22 @@ function Home() {
     <Wrapper>
       <CardWrapper>
         <Japanese>
-          <button>
-            Japanese <br /> Kanji <br /> <GiCardRandom />{" "}
-          </button>
+          <Link className="my-link" to={`/kanji/1`}>
+            <p>Japanese</p>
+            <p>Kanji</p>
+            <div>
+              <GiCardRandom />
+            </div>
+          </Link>
         </Japanese>
         <Chinese>
-          <button>
-            Chinese <br /> Hanzi <br /> <GiCardRandom />
-          </button>
+          <Link className="my-link" to={`/kanji/1`}>
+            <p>Chinese</p>
+            <p>Hanzi</p>
+            <div>
+              <GiCardRandom />
+            </div>
+          </Link>
         </Chinese>
       </CardWrapper>
       <ExampleHeader>
@@ -198,12 +249,13 @@ function Home() {
           </Front>
           <Back>
             <p>
-              An <b>old</b> man is standing under the<span>moon</span> next to the<span>water</span> of a<span>lake</span>.
+              An <b>old</b> man is standing under the<span>moon</span> next to
+              the<span>water</span> of a<span>lake</span>.
             </p>
           </Back>
         </Example>
       </ExampleWrapper>
-      <Footer>© {this_year} kanjiapp.com All Rights Reserved</Footer>
+      <Footer>© {this_year} hanzikanji.com All Rights Reserved</Footer>
     </Wrapper>
   );
 }
