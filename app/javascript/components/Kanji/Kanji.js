@@ -63,17 +63,25 @@ const Kanji = (props) => {
     return item.attributes;
   });
 
+  const nextCard = () => {
+    let new_index = index + 1;
+    setIndex(new_index);
+  }
+  const prevCard = () => {
+    let new_index = index - 1;
+    setIndex(new_index);
+  }
 
   return (
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} index={index} />
+          <Card data={data} index={index}/>
         </div>
       )}
       <Controls>
-        <div>Previous</div>
-        <div>Next</div>
+        <div onClick={prevCard}>Previous</div>
+        <div onClick={nextCard}>Next</div>
       </Controls>
     </Fragment>
   );
