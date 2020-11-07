@@ -34,7 +34,9 @@ const Controls = styled.div`
 const Kanji = (props) => {
   const num = props.match.params.num;
   // *** calculate the right pageNumber for this kanji, and the first and last kanji on that page ***
-  let pageNumber = Math.ceil(num / 50);
+  let kanjisPerPage = 50;
+  let pageNumber = Math.ceil(num / kanjisPerPage);
+  let totalPages = 3030 / kanjisPerPage;
   let first_kanji_number = pageNumber * 50 - 49;
   let last_kanji_number = pageNumber * 50;
   let char_index = num - first_kanji_number;
@@ -64,19 +66,27 @@ const Kanji = (props) => {
   });
 
   const nextCard = () => {
-    let new_index = index + 1;
-    setIndex(new_index);
-  }
+    console.log(index);
+
+    if (data[index].number === 3030) {
+    } else {
+      let new_index = index + 1;
+      setIndex(new_index);
+    }
+  };
   const prevCard = () => {
-    let new_index = index - 1;
-    setIndex(new_index);
-  }
+    if (data[index].number === 1) {
+    } else {
+      let new_index = index - 1;
+      setIndex(new_index);
+    }
+  };
 
   return (
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} index={index}/>
+          <Card data={data} index={index} />
         </div>
       )}
       <Controls>
