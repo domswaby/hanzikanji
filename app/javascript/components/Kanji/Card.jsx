@@ -32,16 +32,15 @@ const Wrapper = styled.div`
   padding: 1.5em;
 `
 
-const Card = ({ data }) => {
+const Card = (props) => {
   console.log("In Card it's: " + typeof data)
-
+  const index = props.index;
   return (
     <Wrapper>
-
-      <CardNumber>{data[0].number}</CardNumber>
-      <CardKanji>{data[0].kanji}</CardKanji>
-      <CardMeaning>{data[0].meaning}</CardMeaning>
-      <CardStory>{data[0].story}</CardStory>
+      <CardNumber>{props.data[index].number}</CardNumber>
+      <CardKanji>{props.data[index].kanji}</CardKanji>
+      <CardMeaning>{props.data[index].meaning}</CardMeaning>
+      <CardStory>{props.data[index].story}</CardStory>
     </Wrapper>
   );
 };

@@ -15,7 +15,7 @@ export const SidebarData = [
   },
   {
     title: 'List',
-    path: '/kanjis/2',
+    path: '/kanjis/1',
     icon: <GiCardRandom/>,
     cName:'nav-text'
   },

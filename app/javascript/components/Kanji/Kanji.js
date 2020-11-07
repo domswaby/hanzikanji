@@ -37,11 +37,12 @@ const Kanji = (props) => {
   let pageNumber = Math.ceil(num / 50);
   let first_kanji_number = pageNumber * 50 - 49;
   let last_kanji_number = pageNumber * 50;
+  let char_index = num - first_kanji_number;
 
   const [loaded, setLoaded] = useState(false);
   const [kanjis, setKanjis] = useState([]);
   const [curKanji, setCurKanji] = useState(num);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(char_index);
   const [page, setPage] = useState(pageNumber);
 
   useEffect(() => {
@@ -62,11 +63,12 @@ const Kanji = (props) => {
     return item.attributes;
   });
 
+
   return (
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} />
+          <Card data={data} index={index} />
         </div>
       )}
       <Controls>
