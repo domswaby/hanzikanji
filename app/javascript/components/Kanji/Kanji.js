@@ -60,20 +60,41 @@ const Kanji = (props) => {
   }, [kanjis.length]);
 
   // *** find the index of the kanji received through params
+  const getKanjis = (direction, new_page) => {
+    axios
+      .get(`/api/v1/kanjis/page/${new_page}.json`)
+      .then((resp) => {
+        if(direction === "up"){
+          setIndex(0);
+        }
+        else{
+          setIndex(49);
+        }
+        setKanjis(resp.data.data);
+        setPage(new_page);
+        setLoaded(true);
+      })
+      .catch((resp) => console.log(resp));
+  };
 
   const data = kanjis.map((item) => {
     return item.attributes;
   });
 
   const nextCard = () => {
-    console.log(index);
-
     if (data[index].number === 3030) {
-    } else {
+
+    }
+    else if (index === 49) {
+      let new_page = page + 1;
+      getKanjis("up", new_page);
+    }
+    else {
       let new_index = index + 1;
       setIndex(new_index);
     }
   };
+
   const prevCard = () => {
     if (data[index].number === 1) {
     } else {

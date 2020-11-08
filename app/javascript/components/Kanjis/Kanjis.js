@@ -7,7 +7,7 @@ import "./Slider.css";
 const Home = styled.div``;
 
 const TableContainer = styled.div`
-  margin-bottom: 2em; 
+  margin-bottom: 2em;
 `;
 
 const Kanjis = (props) => {
