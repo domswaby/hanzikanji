@@ -21,7 +21,7 @@ export const SidebarData = [
   },
   {
     title: 'Cards',
-    path: '/kanji/3030',
+    path: '/kanji/1',
     icon: <ImListNumbered/>,
     cName:'nav-text'
   },

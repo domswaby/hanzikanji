@@ -66,13 +66,18 @@ const Kanji = (props) => {
       .then((resp) => {
         if(direction === "up"){
           setIndex(0);
+          setKanjis(resp.data.data);
+          setPage(new_page);
+            setLoaded(true);
         }
         else{
           setIndex(49);
+          setKanjis(resp.data.data);
+          setPage(new_page);
+            setLoaded(true);
         }
-        setKanjis(resp.data.data);
-        setPage(new_page);
-        setLoaded(true);
+
+
       })
       .catch((resp) => console.log(resp));
   };
@@ -97,7 +102,12 @@ const Kanji = (props) => {
 
   const prevCard = () => {
     if (data[index].number === 1) {
-    } else {
+    }
+    else if (index === 0) {
+      let new_page = page - 1;
+      getKanjis("down", new_page);
+    }
+    else {
       let new_index = index - 1;
       setIndex(new_index);
     }
