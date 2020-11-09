@@ -117,7 +117,7 @@ const Kanji = (props) => {
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} index={index} />
+          <Card data={data} index={index} pageNumber={page}/>
         </div>
       )}
       <Controls>

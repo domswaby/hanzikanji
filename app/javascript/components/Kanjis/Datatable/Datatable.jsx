@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import './Datatable.css'
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import "./Datatable.css";
 
 const Datatable = ({ data }) => {
   const columns = data[0] && Object.keys(data[0]);
@@ -13,9 +14,14 @@ const Datatable = ({ data }) => {
       <tbody>
         {data.map((row) => (
           <tr>
-            {columns.map((column) => (
-              <td>{row[column]}</td>
-            ))}
+            {" "}
+              {columns.map((column) => (
+                <td>
+                  <Link to={`/kanji/${row["number"]}`}>
+                  {row[column]}
+                </Link>
+                </td>
+              ))}
           </tr>
         ))}
       </tbody>
