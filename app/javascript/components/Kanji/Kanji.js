@@ -42,6 +42,7 @@ const Kanji = (props) => {
   let char_index = num - first_kanji_number;
 
   const [loaded, setLoaded] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [kanjis, setKanjis] = useState([]);
   const [curKanji, setCurKanji] = useState(num);
   const [index, setIndex] = useState(char_index);
@@ -87,6 +88,7 @@ const Kanji = (props) => {
   });
 
   const nextCard = () => {
+    setShowInfo(false);
     if (data[index].number === 3030) {
 
     }
@@ -113,11 +115,16 @@ const Kanji = (props) => {
     }
   };
 
+  const toggleInfo = () => {
+    let toggle = !showInfo;
+    setShowInfo(toggle);
+  }
+
   return (
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} index={index} pageNumber={page}/>
+          <Card data={data} index={index} pageNumber={page} toggle={toggleInfo} showInfo={showInfo}/>
         </div>
       )}
       <Controls>

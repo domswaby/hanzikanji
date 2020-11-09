@@ -26,28 +26,27 @@ const PageNumber = styled.div`
     text-decoration: none;
     color: var(--light-gray);
   }
-  a:visited{
+  a:visited {
     color: var(--light-black);
   }
-  div{
+  div {
     padding: 1em 1em 1em 0;
   }
   &:hover {
-    a{
+    a {
       color: var(--cream-white);
     }
     cursor: pointer;
     border-radius: 0%;
     background-color: var(--light-blue);
     color: var(--cream-white);
-
   }
 `;
 const CardKanji = styled.div`
   font-size: 5em;
   display: flex;
   justify-content: center;
-  margin: 1em 0;
+  margin: 1.5em 0 0.5em 0;
 `;
 const CardMeaning = styled.div`
   font-size: 3em;
@@ -56,37 +55,49 @@ const CardMeaning = styled.div`
   margin-bottom: 1em;
 `;
 const CardStory = styled.div`
-  font-size: 2em;
+  font-size: 1.75em;
   display: flex;
   justify-content: center;
+  align-self: center;
+  width: 60%;
+  line-height: 1.5em;
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    font-size: 1.3em;
+  }
+
 `;
 const Wrapper = styled.div`
   position: relative;
   display: flex;
+  min-height: calc(100vh - 160px);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+
   padding: 1.5em;
+  .hideInfo{
+    visibility: hidden;
+  }
+  margin-bottom: 100px;
 `;
 
 const Card = (props) => {
   console.log("In Card it's: " + typeof data);
   const index = props.index;
   return (
-    <Wrapper>
+    <Wrapper onClick={props.toggle}>
       <CardNumber>#{props.data[index].number}</CardNumber>
       <PageNumber>
-      <Link to={`/kanjis/${props.pageNumber}`}>
-
-
-        <div>
-          <ImListNumbered />
-        </div>
-        <div>Page {props.pageNumber}</div>
+        <Link to={`/kanjis/${props.pageNumber}`}>
+          <div>
+            <ImListNumbered />
+          </div>
+          <div>Page {props.pageNumber}</div>
         </Link>
       </PageNumber>
       <CardKanji>{props.data[index].kanji}</CardKanji>
-      <CardMeaning>{props.data[index].meaning}</CardMeaning>
-      <CardStory>{props.data[index].story}</CardStory>
+      <CardMeaning className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].meaning}</CardMeaning>
+      <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].story}</CardStory>
     </Wrapper>
   );
 };
