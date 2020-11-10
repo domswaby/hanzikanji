@@ -8,20 +8,29 @@ const Datatable = ({ data }) => {
   return (
     <table cellPadding={0} cellSpacing={0}>
       <thead>
-        <tr>{data[0] && columns.map((heading) => <th>{heading}</th>)}</tr>
+        <tr>
+          {data[0] &&
+            columns.map((heading) => {
+              if (heading !== "parts") {
+                return <th>{heading}</th>;
+              }
+            })}
+        </tr>
       </thead>
 
       <tbody>
         {data.map((row) => (
           <tr>
             {" "}
-              {columns.map((column) => (
-                <td>
-                  <Link to={`/kanji/${row["number"]}`}>
-                  {row[column]}
-                </Link>
-                </td>
-              ))}
+            {columns.map((column) => {
+              if (column !== "parts") {
+                return (
+                  <td>
+                    <Link to={`/kanji/${row["number"]}`}>{row[column]}</Link>
+                  </td>
+                );
+              }
+            })}
           </tr>
         ))}
       </tbody>

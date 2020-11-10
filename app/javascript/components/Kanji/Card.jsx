@@ -52,7 +52,11 @@ const CardMeaning = styled.div`
   font-size: 3em;
   display: flex;
   justify-content: center;
+  text-align: center;
   margin-bottom: 1em;
+  @media only screen and (max-width: 600px) {
+    font-size: 2.3em;
+  }
 `;
 const CardStory = styled.div`
   font-size: 1.75em;
@@ -60,12 +64,24 @@ const CardStory = styled.div`
   justify-content: center;
   align-self: center;
   width: 60%;
+  padding: 1em 0.5em;
   line-height: 1.5em;
+  margin-bottom: 1em;
+  border-radius: 5%;
+  background-color: var(--light-gray-home);
   @media only screen and (max-width: 600px) {
     width: 90%;
     font-size: 1.3em;
   }
 
+`;
+const CardParts = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: left;
+font-size: 1.5em;
+color: var(--dark-gray);
 `;
 const Wrapper = styled.div`
   position: relative;
@@ -82,8 +98,13 @@ const Wrapper = styled.div`
 `;
 
 const Card = (props) => {
-  console.log("In Card it's: " + typeof data);
   const index = props.index;
+  const parts = props.data[index].parts.map( item => {
+    return (
+      <div>{item.part} - {item.meaning}</div>
+    )
+  });
+
   return (
     <Wrapper onClick={props.toggle}>
       <CardNumber>#{props.data[index].number}</CardNumber>
@@ -98,6 +119,7 @@ const Card = (props) => {
       <CardKanji>{props.data[index].kanji}</CardKanji>
       <CardMeaning className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].meaning}</CardMeaning>
       <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].story}</CardStory>
+      <CardParts className={props.showInfo ? "showInfo" : "hideInfo"}><div>{parts}</div></CardParts>
     </Wrapper>
   );
 };
