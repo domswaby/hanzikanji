@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ImListNumbered } from "react-icons/im";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
+import parse from 'html-react-parser';
+
 
 const CardNumber = styled.div`
   position: absolute;
@@ -69,6 +70,9 @@ const CardStory = styled.div`
   margin-bottom: 1em;
   border-radius: 5%;
   background-color: var(--light-gray-home);
+  .meaning {
+    color: var(--strong-red);
+  }
   @media only screen and (max-width: 600px) {
     width: 90%;
     font-size: 1.3em;
@@ -118,7 +122,7 @@ const Card = (props) => {
       </PageNumber>
       <CardKanji>{props.data[index].kanji}</CardKanji>
       <CardMeaning className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].meaning}</CardMeaning>
-      <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].story}</CardStory>
+      <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}>{parse(props.data[index].story)}</CardStory>
       <CardParts className={props.showInfo ? "showInfo" : "hideInfo"}><div>{parts}</div></CardParts>
     </Wrapper>
   );

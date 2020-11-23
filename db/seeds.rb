@@ -23,7 +23,7 @@ end
 
 if Kanji.count == 0
   count = 0
-  path = File.join(File.dirname(__FILE__), './kanji_stories_medium.json')
+  path = File.join(File.dirname(__FILE__), './kanji_stories_medium_with_markup.json')
   records = JSON.parse(File.read(path))
 
   records.each do |record|
