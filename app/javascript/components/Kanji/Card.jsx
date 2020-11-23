@@ -70,8 +70,12 @@ const CardStory = styled.div`
   margin-bottom: 1em;
   border-radius: 5%;
   background-color: var(--light-gray-home);
+  span {
+    font-weight: bold;
+  }
   .meaning {
     color: var(--strong-red);
+    font-size:4em;
   }
   @media only screen and (max-width: 600px) {
     width: 90%;
