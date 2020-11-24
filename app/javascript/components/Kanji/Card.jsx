@@ -47,7 +47,9 @@ const CardKanji = styled.div`
   font-size: 5em;
   display: flex;
   justify-content: center;
+
   margin: 1.5em 0 0.5em 0;
+
 `;
 const CardMeaning = styled.div`
   font-size: 3em;
@@ -55,6 +57,9 @@ const CardMeaning = styled.div`
   justify-content: center;
   text-align: center;
   margin-bottom: 1em;
+  -webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none; /* Standard syntax */
   @media only screen and (max-width: 600px) {
     font-size: 2.3em;
   }
@@ -70,12 +75,16 @@ const CardStory = styled.div`
   margin-bottom: 1em;
   border-radius: 5%;
   background-color: var(--light-gray-home);
+  -webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none; /* Standard syntax */
   span {
     font-weight: bold;
+    margin-left: 0;
   }
   .meaning {
     color: var(--strong-red);
-    font-size:4em;
+
   }
   @media only screen and (max-width: 600px) {
     width: 90%;
@@ -97,6 +106,9 @@ const Wrapper = styled.div`
   min-height: calc(100vh - 160px);
   flex-direction: column;
   justify-content: flex-start;
+  -webkit-user-select: none; /* Safari */
+-ms-user-select: none; /* IE 10 and IE 11 */
+user-select: none; /* Standard syntax */
 
   padding: 1.5em;
   .hideInfo{
@@ -126,7 +138,7 @@ const Card = (props) => {
       </PageNumber>
       <CardKanji>{props.data[index].kanji}</CardKanji>
       <CardMeaning className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].meaning}</CardMeaning>
-      <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}>{parse(props.data[index].story)}</CardStory>
+      <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}><p>{parse(props.data[index].story)}</p></CardStory>
       <CardParts className={props.showInfo ? "showInfo" : "hideInfo"}><div>{parts}</div></CardParts>
     </Wrapper>
   );
