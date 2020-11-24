@@ -12,6 +12,9 @@ const Controls = styled.div`
   background: black;
   width: 100%;
   color: white;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
   div {
     text-align: center;
     display: flex;
@@ -65,20 +68,17 @@ const Kanji = (props) => {
     axios
       .get(`/api/v1/kanjis/page/${new_page}.json`)
       .then((resp) => {
-        if(direction === "up"){
+        if (direction === "up") {
           setIndex(0);
           setKanjis(resp.data.data);
           setPage(new_page);
-            setLoaded(true);
-        }
-        else{
+          setLoaded(true);
+        } else {
           setIndex(49);
           setKanjis(resp.data.data);
           setPage(new_page);
-            setLoaded(true);
+          setLoaded(true);
         }
-
-
       })
       .catch((resp) => console.log(resp));
   };
@@ -90,13 +90,10 @@ const Kanji = (props) => {
   const nextCard = () => {
     setShowInfo(false);
     if (data[index].number === 3030) {
-
-    }
-    else if (index === 49) {
+    } else if (index === 49) {
       let new_page = page + 1;
       getKanjis("up", new_page);
-    }
-    else {
+    } else {
       let new_index = index + 1;
       setIndex(new_index);
     }
@@ -104,12 +101,10 @@ const Kanji = (props) => {
 
   const prevCard = () => {
     if (data[index].number === 1) {
-    }
-    else if (index === 0) {
+    } else if (index === 0) {
       let new_page = page - 1;
       getKanjis("down", new_page);
-    }
-    else {
+    } else {
       let new_index = index - 1;
       setIndex(new_index);
     }
@@ -118,13 +113,19 @@ const Kanji = (props) => {
   const toggleInfo = () => {
     let toggle = !showInfo;
     setShowInfo(toggle);
-  }
+  };
 
   return (
     <Fragment>
       {loaded && (
         <div>
-          <Card data={data} index={index} pageNumber={page} toggle={toggleInfo} showInfo={showInfo}/>
+          <Card
+            data={data}
+            index={index}
+            pageNumber={page}
+            toggle={toggleInfo}
+            showInfo={showInfo}
+          />
         </div>
       )}
       <Controls>
