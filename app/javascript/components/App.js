@@ -41,11 +41,11 @@ const App = () => {
       <CangJie></CangJie>
       <CharPic></CharPic>
       <Switch>
-        <Route exact path="/kanjis/:page" component={Kanjis} />
+        <Route exact path="/list/:deck/:page" component={Kanjis} />
         <Route exact path="/kanji/:num" component={Kanji} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/contact" component={Contact} />
-        <Route exact path="/" component={Airlines} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/airlines/:slug" component={Airline} />
       </Switch>
     </Fragment>

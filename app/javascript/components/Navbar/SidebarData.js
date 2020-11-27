@@ -14,8 +14,14 @@ export const SidebarData = [
     cName:'nav-text'
   },
   {
-    title: 'List',
-    path: '/kanjis/1',
+    title: 'Kanji List',
+    path: '/list/kanjis/1',
+    icon: <GiCardRandom/>,
+    cName:'nav-text'
+  },
+  {
+    title: 'Hanzi List',
+    path: '/list/hanzis/1',
     icon: <GiCardRandom/>,
     cName:'nav-text'
   },

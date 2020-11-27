@@ -11,22 +11,25 @@ const TableContainer = styled.div`
 `;
 
 const Kanjis = (props) => {
-  const num = props.match.params.page;
+  const page_prop = props.match.params.page;
+  const deck_prop = props.match.params.deck;
   const [kanjis, setKanjis] = useState([]);
-  const [page, setPage] = useState(num);
+  const [page, setPage] = useState(page_prop);
+  const [deck, setDeck] = useState(deck_prop);
 
   useEffect(() => {
     // Get all of our kanjis from api
     // Update kanjis in our state
+    setDeck(props.match.params.deck);
     axios
-      .get(`/api/v1/kanjis/page/${page}.json`)
+      .get(`/api/v1/${props.match.params.deck}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
-  }, [kanjis.length]);
+  }, [kanjis.length, props.match.params]);
 
   const getKanjis = () => {
     axios
-      .get(`/api/v1/kanjis/page/${page}.json`)
+      .get(`/api/v1/${deck}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
   };
