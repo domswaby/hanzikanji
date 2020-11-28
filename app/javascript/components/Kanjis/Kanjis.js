@@ -13,6 +13,19 @@ const TableContainer = styled.div`
 const Kanjis = (props) => {
   const page_prop = props.match.params.page;
   const deck_prop = props.match.params.deck;
+  let kanjisPerPage = 50;
+  let deck_length = 0;
+  if(deck_prop === 'hanzis'){
+    deck_length = 4143;
+  }else{
+    deck_length = 3030;
+  }
+
+  let totalPages = deck_length / kanjisPerPage;
+
+  let first_kanji_number = page_prop * 50 - 49;
+  let last_kanji_number = page_prop * 50;
+
   const [kanjis, setKanjis] = useState([]);
   const [page, setPage] = useState(page_prop);
   const [deck, setDeck] = useState(deck_prop);
@@ -25,11 +38,11 @@ const Kanjis = (props) => {
       .get(`/api/v1/${props.match.params.deck}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
-  }, [kanjis.length, props.match.params]);
+  }, [kanjis.length, props.match.params.deck]);
 
   const getKanjis = () => {
     axios
-      .get(`/api/v1/${deck}/page/${page}.json`)
+      .get(`/api/v1/${props.match.params.deck}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
   };

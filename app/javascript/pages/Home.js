@@ -215,15 +215,6 @@ function Home() {
   return (
     <Wrapper>
       <CardWrapper>
-        <Japanese>
-          <Link className="my-link" to={`/kanji/1`}>
-            <p>Japanese</p>
-            <p>Kanji</p>
-            <div>
-              <GiCardRandom />
-            </div>
-          </Link>
-        </Japanese>
         <Chinese>
           <Link className="my-link" to={`/kanji/1`}>
             <p>Chinese</p>
@@ -233,6 +224,15 @@ function Home() {
             </div>
           </Link>
         </Chinese>
+        <Japanese>
+          <Link className="my-link" to={`/kanji/1`}>
+            <p>Japanese</p>
+            <p>Kanji</p>
+            <div>
+              <GiCardRandom />
+            </div>
+          </Link>
+        </Japanese>
       </CardWrapper>
       <ExampleHeader>
         <p>Memorize character meanings like this:</p>
