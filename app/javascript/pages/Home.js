@@ -216,7 +216,7 @@ function Home() {
     <Wrapper>
       <CardWrapper>
         <Chinese>
-          <Link className="my-link" to={`/kanji/1`}>
+          <Link className="my-link" to={`/cards/hanzis/1`}>
             <p>Chinese</p>
             <p>Hanzi</p>
             <div>
@@ -225,7 +225,7 @@ function Home() {
           </Link>
         </Chinese>
         <Japanese>
-          <Link className="my-link" to={`/kanji/1`}>
+          <Link className="my-link" to={`/cards/kanjis/1`}>
             <p>Japanese</p>
             <p>Kanji</p>
             <div>

@@ -23,13 +23,13 @@ end
 
 if Kanji.count == 0
   count = 0
-  path = File.join(File.dirname(__FILE__), './kanji_stories_medium_with_markup.json')
+  path = File.join(File.dirname(__FILE__), './kanji_stories_medium_with_markup_2.json')
   records = JSON.parse(File.read(path))
 
   records.each do |record|
     puts "This is the a record: #{record}"
     new_record = {
-      :kanji => record["kanji"],
+      :char => record["char"],
       :meaning => record["meaning"],
       :story => record["story"],
       :number => record["number"]
@@ -58,13 +58,13 @@ end
 
 if Hanzi.count == 0
   count = 0
-  path = File.join(File.dirname(__FILE__), './t_and_s_hanzi_medium_with_markup.json')
+  path = File.join(File.dirname(__FILE__), './t_and_s_hanzi_medium_with_markup_2.json')
   records = JSON.parse(File.read(path))
 
   records.each do |record|
     puts "This is the a record: #{record}"
     new_record = {
-      :hanzi => record["hanzi"],
+      :char => record["char"],
       :meaning => record["meaning"],
       :story => record["story"],
       :number => record["number"]
@@ -87,7 +87,7 @@ if Hanzi.count == 0
   end
   # kanji = Kanji.create(records)
   puts 'Hanzi are seeded'
-  puts '${count} parts not found'
+  puts "#{count} parts not found"
 end
 
 

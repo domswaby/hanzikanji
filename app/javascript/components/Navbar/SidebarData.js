@@ -25,8 +25,14 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Cards",
-    path: "/kanji/1",
+    title: "Hanzi Cards",
+    path: "/cards/hanzis/1",
+    icon: <ImListNumbered />,
+    cName: "nav-text",
+  },
+  {
+    title: "Kanji Cards",
+    path: "/cards/kanjis/1",
     icon: <ImListNumbered />,
     cName: "nav-text",
   },

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
   end
 
   create_table "hanzis", force: :cascade do |t|
-    t.string "hanzi"
+    t.string "char"
     t.string "meaning"
     t.string "story"
     t.integer "number"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
   end
 
   create_table "kanjis", force: :cascade do |t|
-    t.string "kanji"
+    t.string "char"
     t.string "meaning"
     t.string "story"
     t.integer "number"

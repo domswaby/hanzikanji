@@ -1,4 +1,4 @@
 class ThanziSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :hanzi, :meaning, :story, :number
+  attributes :char, :meaning, :story, :number
 end

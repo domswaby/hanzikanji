@@ -42,7 +42,7 @@ const App = () => {
       <CharPic></CharPic>
       <Switch>
         <Route exact path="/list/:deck/:page" component={Kanjis} />
-        <Route exact path="/kanji/:num" component={Kanji} />
+        <Route exact path="/cards/:deck/:num" component={Kanji} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/" component={Home} />

@@ -136,7 +136,7 @@ const Card = (props) => {
           <div>Page {props.pageNumber}</div>
         </Link>
       </PageNumber>
-      <CardKanji>{props.data[index].kanji}</CardKanji>
+      <CardKanji>{props.data[index].char}</CardKanji>
       <CardMeaning className={props.showInfo ? "showInfo" : "hideInfo"}>{props.data[index].meaning}</CardMeaning>
       <CardStory className={props.showInfo ? "showInfo" : "hideInfo"}><p>{parse(props.data[index].story)}</p></CardStory>
       <CardParts className={props.showInfo ? "showInfo" : "hideInfo"}><div>{parts}</div></CardParts>
