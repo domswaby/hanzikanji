@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import parse from "html-react-parser";
 import "./Datatable.css";
 
-const Datatable = ({ data }) => {
+const Datatable = ({ data, deck }) => {
   const columns = data[0] && Object.keys(data[0]);
   return (
     <table cellPadding={0} cellSpacing={0}>
@@ -28,14 +28,14 @@ const Datatable = ({ data }) => {
                 if (column === "story") {
                   return (
                     <td>
-                      <Link to={`/kanji/${row["number"]}`}>{parse(row[column])}</Link>
+                      <Link to={`/cards/${deck}/${row["number"]}`}>{parse(row[column])}</Link>
                     </td>
                   );
 
                 } else {
                   return (
                     <td>
-                      <Link to={`/kanji/${row["number"]}`}>{row[column]}</Link>
+                      <Link to={`/cards/${deck}/${row["number"]}`}>{row[column]}</Link>
                     </td>
                   );
                 }

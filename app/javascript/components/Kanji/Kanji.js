@@ -75,12 +75,12 @@ const Kanji = (props) => {
           console.log(resp.data.data);
           setKanjis(resp.data.data);
           setIndex(0);
-          setPage(new_page);
+          setPage(old_page => old_page + 1);
 
         } else {
           setKanjis(resp.data.data);
           setIndex(resp.data.data.length - 1);
-          setPage(new_page);
+          setPage(old_page => old_page - 1);
         }
           setLoaded(true);
       })
@@ -98,8 +98,7 @@ const Kanji = (props) => {
       } else if (index === 49) {
         let new_page = page + 1;
         getKanjis("up", new_page);
-        console.log("triggered successfully");
-        console.log(new_page);
+
       } else {
         let new_index = index + 1;
         setIndex(new_index);
@@ -136,6 +135,7 @@ const Kanji = (props) => {
         <div>
           <Card
             data={data}
+            deck={props.match.params.deck}
             index={index}
             pageNumber={page}
             toggle={toggleInfo}

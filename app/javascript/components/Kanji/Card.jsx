@@ -129,7 +129,7 @@ const Card = (props) => {
     <Wrapper onClick={props.toggle}>
       <CardNumber>#{props.data[index].number}</CardNumber>
       <PageNumber>
-        <Link to={`/kanjis/${props.pageNumber}`}>
+        <Link to={`/list/${props.deck}/${props.pageNumber}`}>
           <div>
             <ImListNumbered />
           </div>

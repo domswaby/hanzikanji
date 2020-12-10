@@ -76,7 +76,7 @@ const Kanjis = (props) => {
         />
     </div>
       <TableContainer>
-        <Datatable data={data} />
+        <Datatable data={data} deck={props.match.params.deck}/>
       </TableContainer>
     </Home>
   );
