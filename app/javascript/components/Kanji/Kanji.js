@@ -60,6 +60,7 @@ const Kanji = (props) => {
   useEffect(() => {
     // Get all kanjis from api
     // Update kanjis in state
+      setLoaded(false);
     axios
       .get(`/api/v1/${deck}/page/${page}.json`)
       .then((resp) => {
@@ -68,7 +69,7 @@ const Kanji = (props) => {
         setLoaded(true);
       })
       .catch((resp) => console.log(resp));
-  }, []);
+  }, [deck]);
 
   // find index of character received from params in kanjis
 
