@@ -18,7 +18,7 @@ module Api
         pageNumber = params[:num].to_i
         first_kanji = (pageNumber * 50) - 49
         last_kanji = pageNumber * 50
-        kanjis = Kanji.where(number: first_kanji..last_kanji)
+        kanjis = Kanji.where(number: first_kanji..last_kanji).order(:number)
         render json: KanjiSerializer.new(kanjis, options).serialized_json
       end
 

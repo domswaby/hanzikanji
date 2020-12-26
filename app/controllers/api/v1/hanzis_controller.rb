@@ -18,7 +18,7 @@ module Api
         pageNumber = params[:num].to_i
         first_hanzi = (pageNumber * 50) - 49
         last_hanzi = pageNumber * 50
-        hanzis = Hanzi.where(number: first_hanzi..last_hanzi)
+        hanzis = Hanzi.where(number: first_hanzi..last_hanzi).order(:number)
         render json: HanziSerializer.new(hanzis, options).serialized_json
       end
 
