@@ -41,7 +41,9 @@ const App = () => {
       <CangJie></CangJie>
       <CharPic></CharPic>
       <Switch>
-        <Route exact path="/list/:deck/:page"></Route>
+        <Route exact path="/list/:deck_param/:page_param">
+          <Kanjis />
+        </Route>
         <Route exact path="/cards/:deck/:num">
           <Kanji />
         </Route>

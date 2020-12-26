@@ -3,6 +3,8 @@ import Datatable from "./Datatable/Datatable";
 import axios from "axios";
 import styled from "styled-components";
 import "./Slider.css";
+import { useParams } from "react-router-dom";
+
 
 const Home = styled.div``;
 
@@ -11,11 +13,11 @@ const TableContainer = styled.div`
 `;
 
 const Kanjis = (props) => {
-  const page_prop = props.match.params.page;
-  const deck_prop = props.match.params.deck;
+  const {page_param} = useParams();
+  const {deck_param} = useParams();
   let kanjisPerPage = 50;
   let deck_length = 0;
-  if(deck_prop === 'hanzis'){
+  if(deck_param === 'hanzis'){
     deck_length = 4143;
   }else{
     deck_length = 3030;
@@ -23,26 +25,26 @@ const Kanjis = (props) => {
 
   let totalPages = deck_length / kanjisPerPage;
 
-  let first_kanji_number = page_prop * 50 - 49;
-  let last_kanji_number = page_prop * 50;
+  let first_kanji_number = page_param * 50 - 49;
+  let last_kanji_number = page_param * 50;
 
   const [kanjis, setKanjis] = useState([]);
-  const [page, setPage] = useState(page_prop);
-  const [deck, setDeck] = useState(deck_prop);
+  const [page, setPage] = useState(page_param);
+  const [deck, setDeck] = useState(deck_param);
 
   useEffect(() => {
     // Get all of our kanjis from api
     // Update kanjis in our state
-    setDeck(props.match.params.deck);
+    setDeck(deck_param);
     axios
-      .get(`/api/v1/${props.match.params.deck}/page/${page}.json`)
+      .get(`/api/v1/${deck_param}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
-  }, [kanjis.length, props.match.params.deck]);
+  }, [kanjis.length, deck_param]);
 
   const getKanjis = () => {
     axios
-      .get(`/api/v1/${props.match.params.deck}/page/${page}.json`)
+      .get(`/api/v1/${deck_param}/page/${page}.json`)
       .then((resp) => setKanjis(resp.data.data))
       .catch((resp) => console.log(resp));
   };
@@ -76,7 +78,7 @@ const Kanjis = (props) => {
         />
     </div>
       <TableContainer>
-        <Datatable data={data} deck={props.match.params.deck}/>
+        <Datatable data={data} deck={deck_param}/>
       </TableContainer>
     </Home>
   );
