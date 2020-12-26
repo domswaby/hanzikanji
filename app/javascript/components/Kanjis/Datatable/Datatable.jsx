@@ -20,7 +20,7 @@ const Datatable = ({ data, deck }) => {
       </thead>
 
       <tbody>
-        {data.map((row) => (
+        {data.map((row, card_index) => (
           <tr>
             {" "}
             {columns.map((column) => {
@@ -28,14 +28,14 @@ const Datatable = ({ data, deck }) => {
                 if (column === "story") {
                   return (
                     <td>
-                      <Link to={`/cards/${deck}/${row["number"]}`}>{parse(row[column])}</Link>
+                      <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{parse(row[column])}</Link>
                     </td>
                   );
 
                 } else {
                   return (
                     <td>
-                      <Link to={`/cards/${deck}/${row["number"]}`}>{row[column]}</Link>
+                      <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{row[column]}</Link>
                     </td>
                   );
                 }
