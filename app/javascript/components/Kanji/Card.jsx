@@ -11,6 +11,7 @@ const CardNumber = styled.div`
   top: 0em;
   left: 0em;
   padding: 2em;
+  border: 2px solid var(--cream-white);
   background-color: var(--dark-gray);
   color: var(--cream-white);
 `;
@@ -65,19 +66,21 @@ user-select: none; /* Standard syntax */
   }
 `;
 const CardStory = styled.div`
-  font-size: 1.75em;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 60%;
-  padding: 1em 0.5em;
-  line-height: 1.5em;
-  margin-bottom: 1em;
-  border-radius: 5%;
-  background-color: var(--light-gray-home);
-  -webkit-user-select: none; /* Safari */
+font-size: 1.75em;
+display: flex;
+justify-content: center;
+align-self: center;
+width: 100%;
+padding: 1em 0.5em;
+line-height: 1.5em;
+margin-bottom: 1em;
+background-color: var(--light-gray-home);
+-webkit-user-select: none; /* Safari */
 -ms-user-select: none; /* IE 10 and IE 11 */
 user-select: none; /* Standard syntax */
+p{
+  width: 60%;
+}
   span {
     font-weight: bold;
     margin-left: 0;
@@ -87,13 +90,17 @@ user-select: none; /* Standard syntax */
 
   }
   @media only screen and (max-width: 600px) {
-    width: 90%;
     font-size: 1.3em;
+
+    p{
+      width: 90%
+    }
   }
 
 `;
 const CardParts = styled.div`
 display: flex;
+height: 100%;
 flex-direction: column;
 align-items: center;
 text-align: left;
@@ -110,7 +117,7 @@ const Wrapper = styled.div`
 -ms-user-select: none; /* IE 10 and IE 11 */
 user-select: none; /* Standard syntax */
 
-  padding: 1.5em;
+  padding: 1.5em 0;
   .hideInfo{
     visibility: hidden;
   }

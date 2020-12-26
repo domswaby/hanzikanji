@@ -2,6 +2,7 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
+import * as FcIcons from "react-icons/fc";
 import { GiCardRandom } from "react-icons/gi";
 import { ImListNumbered } from "react-icons/im";
 
@@ -42,4 +43,10 @@ export const SidebarData = [
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
   },
+  {
+    title: "About",
+    path: "/about",
+    icon: <FcIcons.FcAbout />,
+    cName: "nav-text",
+  }
 ];

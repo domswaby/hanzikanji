@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import Reports from "../pages/Reports";
 import Products from "../pages/Products";
 import Contact from "../pages/Contact";
+import About from "../pages/About";
 import styled from "styled-components";
 import cangJie_img from "../../assets/images/CangjieBlackWhite.jpg";
 import charPic_img from "../../assets/images/Favicons/zi_written_small.jpg";
@@ -52,6 +53,9 @@ const App = () => {
         </Route>
         <Route exact path="/contact">
           <Contact />
+        </Route>
+        <Route exact path="/about">
+          <About />
         </Route>
         <Route exact path="/" >
           <Home />
