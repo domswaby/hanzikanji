@@ -20,8 +20,8 @@ const ContentWrapper = styled.div`
 const AboutContent = (props) => {
   return (
     <ContentWrapper>
-      <h2>ksajfa</h2>
-      <p id="p1">
+      <h2 id="p1">ksajfa</h2>
+      <p>
         De aute probant consectetur ubi consequat magna pariatur, sed magna
         praetermissum ut ubi quo domesticarum do probant si labore iis quibusdam
         duis quis incididunt sint, ab deserunt hic deserunt, nulla consequat eu
@@ -34,8 +34,8 @@ const AboutContent = (props) => {
         singulis an laboris et dolore admodum, excepteur qui constias. Te eram
         exquisitaque, singulis enim anim admodum fugiat.
       </p>
-      <h2>ksajfa</h2>
-      <p id="p2">
+      <h2 id="p2">ksajfa</h2>
+      <p>
         Ipsum ita expetendis, eiusmod iis quid se malis litteris praetermissum,
         ut quem distinguantur, summis quo quibusdam de sed labore aute elit
         pariatur, vidisse multos esse quamquam quem, quamquam quae ut senserit
@@ -50,8 +50,8 @@ const AboutContent = (props) => {
         laboris ita nisi. Quem o doctrina, iudicem aute enim te sunt, culpa nam
         ingeniis nam velit, ingeniis in quem officia.
       </p>
-      <h2>ksajfa</h2>
-      <p id="p3">
+      <h2 id="p3">ksajfa</h2>
+      <p>
         Ab export quid si arbitror. Irure admodum exquisitaque. Ex possumus te
         ingeniis, multos probant a irure nulla eu anim a voluptate o quis, te
         amet fabulas.Eiusmod tempor ea probant comprehenderit in laborum non
@@ -63,8 +63,8 @@ const AboutContent = (props) => {
         commodo qui eiusmod se hic qui eruditionem, anim eiusmod sed aute amet,
         se nisi aute culpa constias. In anim appellat appellat.
       </p>
-      <h2>ksajfa</h2>
-      <p id="p4">
+      <h2 id="p4">ksajfa</h2>
+      <p>
         Possumus consectetur do appellat. Irure relinqueret mentitum multos
         probant te duis aut fabulas eu excepteur ubi magna ea id anim quo
         quorum, proident nulla iudicem nam tamen est nam fugiat commodo, summis
