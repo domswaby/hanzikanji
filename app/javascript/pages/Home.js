@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import card_img from "./chinese_flashcards.jpg";
+import Footer from "./Footer";
 import lake_kanji_img from "./lake_kanji_pic.png";
 import { GiCardRandom } from "react-icons/gi";
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -44,11 +45,9 @@ const Japanese = styled.div`
     font-size: 3em;
     min-height: 7em;
     width: 80%;
-    border-radius: 15%;
     transition: border-radius 0.3s;
     &:hover {
       cursor: pointer;
-      border-radius: 0%;
       background-color: var(--light-black);
     }
   }
@@ -82,11 +81,9 @@ const Chinese = styled.div`
     font-size: 3em;
     min-height: 7em;
     width: 80%;
-    border-radius: 10%;
     transition: border-radius 0.3s;
     &:hover {
       cursor: pointer;
-      border-radius: 0%;
       color: var(--cream-white);
         background-color: var(--light-black);
     }
@@ -166,16 +163,16 @@ const Back = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  color: var(--cream-white);
-  font-size: 4em;
+  color: black;
+  font-size: 2.5em;
   width: 50%;
   align-items: center;
   justify-content: center;
-  background: url(${lake_kanji_img});
-  background-repeat: no-repeat;
-  background-size: cover;
+  border-left: 2px solid var(--dark-gray);
+
   span {
     color: var(--dark-gray);
+
   }
   b {
     color: var(--strong-red);
@@ -185,30 +182,25 @@ const Back = styled.div`
     width: 80%;
     background-color: var(--light-gray-home);
     padding: 0.5em;
+
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
+    border: none;
     flex-direction: column;
     background-repeat: repeat;
     background-size: contain;
-    font-size: 2.5em;
+    font-size: 1.5em;
     padding: 1em 0;
+    p{
+      width: 95%;
+    }
   }
 `;
-const Footer = styled.div`
-  font-size: 1em;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  background-color: black;
-`;
+
 const PartsWrapper = styled.div`
   text-align: left;
 `;
-const this_year = new Date().getFullYear();
 
 // 古 湖 氵 月
 function Home() {
@@ -255,7 +247,7 @@ function Home() {
           </Back>
         </Example>
       </ExampleWrapper>
-      <Footer>© {this_year} hanzikanji.com All Rights Reserved</Footer>
+      <Footer /> 
     </Wrapper>
   );
 }

@@ -80,6 +80,7 @@ background-color: var(--light-gray-home);
 user-select: none; /* Standard syntax */
 p{
   width: 60%;
+
 }
   span {
     font-weight: bold;

@@ -2,6 +2,7 @@ import React from "react";
 import { FaTwitter } from "react-icons/fa";
 import { AiTwotoneMail } from "react-icons/ai";
 import styled from "styled-components";
+import Footer from "./Footer";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,23 +56,26 @@ const MailWrapper = styled.div`
 
 function Contact() {
   return (
-    <Wrapper>
-      <TwitterWrapper href="https://twitter.com/HanziKanjiCards">
-        <div>
-          <FaTwitter />
-        </div>
-        <p>
-          <a href="https://twitter.com/HanziKanjiCards">@HanziKanjiCards</a>
-        </p>
-      </TwitterWrapper>
+    <div>
+      <Wrapper>
+        <TwitterWrapper href="https://twitter.com/HanziKanjiCards">
+          <div>
+            <FaTwitter />
+          </div>
+          <p>
+            <a href="https://twitter.com/HanziKanjiCards">@HanziKanjiCards</a>
+          </p>
+        </TwitterWrapper>
 
-      <MailWrapper>
-        <div>
-          <AiTwotoneMail />
-        </div>
-        <p>support@kanjiapp.com</p>
-      </MailWrapper>
-    </Wrapper>
+        <MailWrapper>
+          <div>
+            <AiTwotoneMail />
+          </div>
+          <p>support@kanjiapp.com</p>
+        </MailWrapper>
+      </Wrapper>
+      <Footer />
+    </div>
   );
 }
 
