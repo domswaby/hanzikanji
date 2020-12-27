@@ -9,17 +9,30 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+
   h1 {
-    padding: 1em 0;
+    padding: 1em 0.5em;
+    width: 100%;
+    background-color: var(--light-gray);
     font-size: 3em;
+    text-align: center;
+  }
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 2em;
+    }
   }
 `;
 
 const InnerWrapper = styled.div`
-  padding: 0 2em 5em 2em;
-  background-color: var(--light-gray);
+  margin: 3em 0;
+  padding: 0 0 5em 0;
+  background-color: var(--lighter-gray);
   width: 70%;
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+    margin: 1em 0;
+  }
 `;
 
 function About() {

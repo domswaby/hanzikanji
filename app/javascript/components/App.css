@@ -18,6 +18,7 @@
 :root{
   --light-black: rgba(26, 26, 26, 1);
   --light-gray: rgba(189, 189, 189, 1);
+  --lighter-gray: rgba(230, 230, 230, 1);
   --light-gray-home: rgba(189, 189, 189, 0.5);
   --dark-red: rgba(137, 13, 14, 1);
   --dark-red-home: rgba(137, 13, 14, 0.7);

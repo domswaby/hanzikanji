@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const ContentWrapper = styled.div`
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   font-size: 1.5em;
 
   p {
@@ -15,6 +16,13 @@ const ContentWrapper = styled.div`
     margin-top: 1em;
     color: var(--dark-gray);
   }
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    font-size: 1.2em;
+    h2{
+      font-size: 1.5em;
+    }
+}
 `;
 
 const AboutContent = (props) => {

@@ -4,17 +4,23 @@ import { Link } from "react-scroll";
 import styled from "styled-components";
 
 const MenuWrapper = styled.div`
-  padding: 0 0 1em 0;
+  padding: 1em 0;
   font-size: 2em;
+  width: 100%;
   ol {
+    width: 70%;
     list-style-position: inside;
+    margin: 0 auto;
   }
   li {
     margin-top: 0.25em;
     cursor: pointer;
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 1.5em;
   }
 `;
 
