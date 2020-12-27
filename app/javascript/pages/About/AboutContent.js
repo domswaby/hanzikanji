@@ -9,18 +9,25 @@ const ContentWrapper = styled.div`
 
   p {
     text-indent: 10%;
-    margin-top: 1em;
+    margin: 1em auto 0 auto;
+    line-height: 2em;
+    width: 90%;
+
   }
   h2{
     font-size: 1.75em;
     margin-top: 1em;
     color: var(--dark-gray);
   }
+
   @media only screen and (max-width: 600px) {
     width: 90%;
     font-size: 1.2em;
     h2{
       font-size: 1.5em;
+    }
+    p{
+      width: 95%;
     }
 }
 `;
@@ -28,61 +35,50 @@ const ContentWrapper = styled.div`
 const AboutContent = (props) => {
   return (
     <ContentWrapper>
-      <h2 id="p1">ksajfa</h2>
+      <h2 id="p1">The Mission</h2>
       <p>
-        De aute probant consectetur ubi consequat magna pariatur, sed magna
-        praetermissum ut ubi quo domesticarum do probant si labore iis quibusdam
-        duis quis incididunt sint, ab deserunt hic deserunt, nulla consequat eu
-        instituendarum. Quis in excepteur e enim comprehenderit appellat quis
-        nescius. Qui occaecat et constias. Id nulla eu aliqua ea si legam
-        expetendis reprehenderit an nostrud quae culpa appellat quae ubi do sed
-        coniunctione.Qui noster malis a quibusdam. E fugiat eu culpa. Et iis
-        firmissimum ab et labore quae et quibusdam non duis doctrina in aute
-        anim, do duis esse a mentitum ita non ne consectetur hic ut quorum
-        singulis an laboris et dolore admodum, excepteur qui constias. Te eram
-        exquisitaque, singulis enim anim admodum fugiat.
+        HanziKanji is meant to be used as a study tool for learning Chinese characters (Hanzi) and / or
+        Japanese characters (Kanji) using the Heisig method. The HanziKanji flashcards include mnemonic
+        stories for all characters included in the Heisig books. As displayed in the example on the home page,
+        each character is broken up into its radical parts, and each part is given a meaning. The mnemonic stories
+        are then composed using each of these parts. HanziKanji has two separate decks which are, not surprisingly, a
+        deck for Kanji, and a deck for Hanzi.  Although Heisig separates the Simplified and Traditional Hanzi, it makes
+        little sense to only learn one of these character sets instead of both as they share so many characters.  To
+        elucidate this, it's helpful to think about the Heisig books. The Heisig Simplified Hanzi book has 3010 characters.
+        The Traditional Hanzi book has 3035 characters. The HanziKanji Hanzi deck mixed these two together, removed duplicate
+        characters and wound up with 4143 characters total.  For that reason the Hanzi deck here is a mix of the Simplified Hanzi and Traditional Hanzi.
       </p>
-      <h2 id="p2">ksajfa</h2>
+      <h2 id="p2">Card Order</h2>
       <p>
-        Ipsum ita expetendis, eiusmod iis quid se malis litteris praetermissum,
-        ut quem distinguantur, summis quo quibusdam de sed labore aute elit
-        pariatur, vidisse multos esse quamquam quem, quamquam quae ut senserit
-        philosophari. Sed noster appellat, ea dolor esse quae mandaremus et
-        possumus est quamquam, te est dolor quis nisi, non ullamco se mentitum,
-        in cillum cernantur sempiternum, ad proident qui expetendis a sed esse
-        commodo. Quo deserunt sempiternum, nescius graviterque se consequat. Quo
-        eram incurreret de laborum ex vidisse.Aliqua hic appellat sed fugiat ad
-        ut quamquam ita iudicem ubi a quo export possumus quo malis singulis aut
-        imitarentur, iudicem summis mentitum, offendit se enim, consequat minim
-        o nescius graviterque est incurreret esse appellat proident. Quorum ex
-        laboris ita nisi. Quem o doctrina, iudicem aute enim te sunt, culpa nam
-        ingeniis nam velit, ingeniis in quem officia.
+        The order of the cards mirrors the order of the Heisig books.  With regards to the Kanji deck this is straightforward.
+        The Hanzi deck on the other hand is slightly more complicated.  The order of both Simplified and Traditional Hanzi
+        both preserve their orders from the Simplified and Traditional Hanzi books.  For easy reference to Heisig, the books
+        are referenced by the same numbers here.  Uniquely Traditional characters (characters which appear in the Traditional Heisig book but DO NOT appear in
+        the Simplified Heisig book) will have the same number as their Traditional Heisig book counterparts.  Uniquely Simplified characters will have the
+        same number as their Simplified Heisig book counterparts.  However, duplicate characters (characters which are parts of both decks) will
+        have the same number as their counterparts in the Traditioanl Heisig book.  As a result, some numbers will have two different characters
+        attached to it as, for example, character #167 in the Simplified book might be a completely different character from #167 in the Traditional book.
+        Scrolling through the decks on the list pages makes it easier to understand what I'm going on about here.
       </p>
-      <h2 id="p3">ksajfa</h2>
+      <h2 id="p3">Card Content</h2>
       <p>
-        Ab export quid si arbitror. Irure admodum exquisitaque. Ex possumus te
-        ingeniis, multos probant a irure nulla eu anim a voluptate o quis, te
-        amet fabulas.Eiusmod tempor ea probant comprehenderit in laborum non
-        fugiat offendit. Qui aute arbitrantur si ab te summis sunt noster, tamen
-        de qui fugiat deserunt id iis magna legam export voluptate a quamquam
-        comprehenderit si laborum, non ex despicationes ubi te velit nulla qui
-        appellat est export a iudicem eu anim. Dolore non incurreret, ingeniis e
-        nisi ingeniis, admodum eram occaecat laborum do nam anim eruditionem, se
-        commodo qui eiusmod se hic qui eruditionem, anim eiusmod sed aute amet,
-        se nisi aute culpa constias. In anim appellat appellat.
+        Each card contains a character, the character's meaning, a mnemonic story, and the radical parts of that character.  The radical parts are highlighted
+        in the story with a unique color.  The meaning of the character is also highlighted in a unique color so that it's easy to recognized the meaning and radical parts,
+        and contrast the two. The meanings of each part are also displayed at the bottom of the card.  These parts are sometimes actual meanings of the radical parts.  However
+        sometimes these parts are given special meanings <b>just for the purposes of the mnemonic</b>.  Furthermore, these parts are sometimes complete characters in and of themselves,
+        and appear earlier in the deck than the character of which they are a part.
       </p>
-      <h2 id="p4">ksajfa</h2>
+      <h2 id="p4">Future Updates</h2>
       <p>
-        Possumus consectetur do appellat. Irure relinqueret mentitum multos
-        probant te duis aut fabulas eu excepteur ubi magna ea id anim quo
-        quorum, proident nulla iudicem nam tamen est nam fugiat commodo, summis
-        te a quorum cupidatat ad eiusmod minim ut consequat consectetur. Quo
-        ipsum aut velit se se eram o dolor.Officia reprehenderit quo senserit,
-        appellat te irure id si dolore malis esse laboris, malis ita senserit.
-        Ea elit offendit cohaerescant, fore coniunctione offendit tempor
-        ingeniis eu qui cupidatat aut mandaremus, et tempor o magna. Te aliquip
-        domesticarum, aut fugiat offendit, ingeniis quem ingeniis consequat ex
-        si sunt offendit.
+        Ultimately HanziKanji will allow users to make an account and persist study data.  Specifically HanziKanji aims to implement a variant of the
+        Supermemo algorithm, similar to the popular flashcard app Anki.  This will give users the ability to engage in a efficient study
+        process.  However users will still be able to view the card decks in a purely reference mode (i.e. non-study mode).
+      </p>
+      <h2 id="p5" >Cang Jie (倉頡)</h2>
+      <p class="cangjie">
+        Although not real, <a href="https://en.wikipedia.org/wiki/Cangjie" target="_blank">Cang Jie</a> is the literary and literally four-eyed legendary creator of Hanzi.
+        Historically, Hanzi came first, and then Kanji.  So to make it more fun we can pretend to have Cang Jie to thank for all of these cool characters!  For this reason he enjoys his rightful place
+        in literature, and in HanziKanji.
       </p>
     </ContentWrapper>
   );

@@ -19,6 +19,9 @@ const MenuWrapper = styled.div`
       text-decoration: underline;
     }
   }
+  .cangjie{
+    background: ;
+  }
   @media only screen and (max-width: 600px) {
     font-size: 1.5em;
   }
@@ -36,7 +39,7 @@ const ScrollMenu = (props) => {
             smooth={true}
             duration={1000}
           >
-            Paragraph 1
+            The Mission
           </Link>
         </li>
         <li>
@@ -47,7 +50,7 @@ const ScrollMenu = (props) => {
             smooth={true}
             duration={1000}
           >
-            Paragraph 2
+            Card Order
           </Link>
         </li>
         <li>
@@ -58,7 +61,7 @@ const ScrollMenu = (props) => {
             smooth={true}
             duration={1000}
           >
-            Paragraph 3
+            Card Content
           </Link>
         </li>
         <li>
@@ -69,7 +72,18 @@ const ScrollMenu = (props) => {
             smooth={true}
             duration={1000}
           >
-            Paragraph 4
+            Future Updates
+          </Link>
+        </li>
+        <li class="cangjie">
+          <Link
+            activeClass="active"
+            to="p5"
+            spy={true}
+            smooth={true}
+            duration={1000}
+          >
+            Cang Jie (倉頡)
           </Link>
         </li>
       </ol>

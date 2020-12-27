@@ -143,7 +143,7 @@ const Front = styled.div`
   }
   .lakeChar {
     font-size: 4em;
-    color: black;
+    color: var(--light-black);
     margin-bottom: 1em;
   }
   @media only screen and (max-width: 800px) {
@@ -166,13 +166,14 @@ const Back = styled.div`
   color: black;
   font-size: 2.5em;
   width: 50%;
+  background-color: var(--light-gray-home);
   align-items: center;
   justify-content: center;
   border-left: 2px solid var(--dark-gray);
 
   span {
-    color: var(--dark-gray);
-
+    color: var(--dark-red-home);
+    margin: 0;
   }
   b {
     color: var(--strong-red);
@@ -180,13 +181,14 @@ const Back = styled.div`
 
   p {
     width: 80%;
-    background-color: var(--light-gray-home);
+    background-color: var(--cream-white);
     padding: 0.5em;
 
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
-    border: none;
+    border-left: none;
+    border-top: 1px solid var(--dark-gray);
     flex-direction: column;
     background-repeat: repeat;
     background-size: contain;
@@ -200,6 +202,9 @@ const Back = styled.div`
 
 const PartsWrapper = styled.div`
   text-align: left;
+  &:first-child{
+    color: var(--strong-red);
+  }
 `;
 
 // 古 湖 氵 月
@@ -241,13 +246,13 @@ function Home() {
           </Front>
           <Back>
             <p>
-              An <b>old</b> man is standing under the<span>moon</span> next to
-              the<span>water</span> of a<span>lake</span>.
+              An <span>old</span> man is standing under the <span>moon</span> next to
+              the <span>water</span> of a <b>lake</b>.
             </p>
           </Back>
         </Example>
       </ExampleWrapper>
-      <Footer /> 
+      <Footer />
     </Wrapper>
   );
 }

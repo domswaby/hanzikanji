@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import Datatable from "./Datatable/Datatable";
 import axios from "axios";
 import styled from "styled-components";
+import Footer from "../../pages/Footer";
 import "./Slider.css";
 import { useParams } from "react-router-dom";
 
@@ -80,6 +81,7 @@ const Kanjis = (props) => {
       <TableContainer>
         <Datatable data={data} deck={deck_param}/>
       </TableContainer>
+      <Footer />
     </Home>
   );
 };
