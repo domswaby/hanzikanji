@@ -58,12 +58,12 @@ function Contact() {
   return (
     <div>
       <Wrapper>
-        <TwitterWrapper href="https://twitter.com/HanziKanjiCards">
+        <TwitterWrapper href="https://twitter.com/HanziKanjiCards" target="_blank">
           <div>
             <FaTwitter />
           </div>
           <p>
-            <a href="https://twitter.com/HanziKanjiCards">@HanziKanjiCards</a>
+            <a href="https://twitter.com/HanziKanjiCards" target="_blank">@HanziKanjiCards</a>
           </p>
         </TwitterWrapper>
 

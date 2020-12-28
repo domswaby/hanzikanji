@@ -39,9 +39,9 @@ const AboutContent = (props) => {
       <h2 id="p1">The Mission</h2>
       <p>
         HanziKanji is meant to be used as a study tool for learning Chinese characters (Hanzi) and / or
-        Japanese characters (Kanji) using the Heisig method. The HanziKanji flashcards include mnemonic
+        Japanese characters (Kanji) using <a href="https://en.wikipedia.org/wiki/Remembering_the_Kanji_and_Remembering_the_Hanzi" target="_blank">the Heisig method</a>. The HanziKanji flashcards include mnemonic
         stories for all characters included in the Heisig books. As displayed in <Link to="/home#example">the example on the home page</Link>,
-        each character is broken up into its radical parts, and each part is given a meaning. The mnemonic stories
+        each character is broken up into its radical parts, and each part is given a meaning. The <a href="https://en.wikipedia.org/wiki/Mnemonic" target="_blank">mnemonic</a> stories
         are then composed using each of these parts. HanziKanji has two separate decks which are, not surprisingly, a
         deck for Kanji, and a deck for Hanzi.  Although Heisig separates the Simplified and Traditional Hanzi, it makes
         little sense to only learn one of these character sets instead of both as they share so many characters.  To
@@ -56,15 +56,15 @@ const AboutContent = (props) => {
         both preserve their orders from the Simplified and Traditional Hanzi books.  For easy reference to Heisig, the books
         are referenced by the same numbers here.  Uniquely Traditional characters (characters which appear in the Traditional Heisig book but DO NOT appear in
         the Simplified Heisig book) will have the same number as their Traditional Heisig book counterparts.  Uniquely Simplified characters will have the
-        same number as their Simplified Heisig book counterparts.  However, duplicate characters (characters which are parts of both decks) will
-        have the same number as their counterparts in the Traditioanl Heisig book.  As a result, some numbers will have two different characters
+        same number as their Simplified Heisig book counterparts.  However, duplicate characters (characters which appear in both books) will
+        have the same number as their counterparts in the Traditional Heisig book.  As a result, some numbers will have two different characters
         attached to it as, for example, character #167 in the Simplified book might be a completely different character from #167 in the Traditional book.
-        Scrolling through the decks on the list pages makes it easier to understand what I'm going on about here.
+        Scrolling through the decks on <Link to="/list/hanzis/1">the list page</Link> makes it easier to understand what I'm going on about here.
       </p>
       <h2 id="p3">Card Content</h2>
       <p>
-        Each card contains a character, the character's meaning, a mnemonic story, and the radical parts of that character.  The radical parts are highlighted
-        in the story with a unique color.  The meaning of the character is also highlighted in a unique color so that it's easy to recognized the meaning and radical parts,
+        Each <Link to="/cards/kanjis/1">card</Link> contains a character, the character's meaning, a mnemonic story, and the <a href="https://en.wikipedia.org/wiki/Kangxi_radical" target="_blank">radical parts</a> of that character.  The radical parts are highlighted
+        in the story with a unique color.  The meaning of the character is also highlighted in a unique color so that it's easy to recognize the meaning and radical parts,
         and contrast the two. The meanings of each part are also displayed at the bottom of the card.  These parts are sometimes actual meanings of the radical parts.  However
         sometimes these parts are given special meanings <b>just for the purposes of the mnemonic</b>.  Furthermore, these parts are sometimes complete characters in and of themselves,
         and appear earlier in the deck than the character of which they are a part.
