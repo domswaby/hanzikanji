@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import styled from "styled-components";
 import card_img from "./chinese_flashcards.jpg";
 import Footer from "./Footer";
@@ -85,7 +86,7 @@ const Chinese = styled.div`
     &:hover {
       cursor: pointer;
       color: var(--cream-white);
-        background-color: var(--light-black);
+      background-color: var(--light-black);
     }
   }
   @media only screen and (max-width: 600px) {
@@ -118,9 +119,9 @@ const ExampleHeader = styled.div`
     text-align: center;
     width: 90%;
   }
-    @media only screen and (max-width: 800px) {
-      font-size: 2em;
-    }
+  @media only screen and (max-width: 800px) {
+    font-size: 2em;
+  }
 `;
 const Example = styled.div`
   display: flex;
@@ -183,7 +184,6 @@ const Back = styled.div`
     width: 80%;
     background-color: var(--cream-white);
     padding: 0.5em;
-
   }
   @media only screen and (max-width: 800px) {
     width: 100%;
@@ -194,7 +194,7 @@ const Back = styled.div`
     background-size: contain;
     font-size: 1.5em;
     padding: 1em 0;
-    p{
+    p {
       width: 95%;
     }
   }
@@ -202,13 +202,25 @@ const Back = styled.div`
 
 const PartsWrapper = styled.div`
   text-align: left;
-  &:first-child{
+  &:first-child {
     color: var(--strong-red);
   }
 `;
 
 // 古 湖 氵 月
 function Home() {
+
+  useEffect(() => {
+    const myId = window.location.hash.slice(1);
+    const elem = document.getElementById(myId);
+
+    console.log(myId);
+    console.log(elem);
+    if (elem) {
+      elem.scrollIntoView();
+    }
+  }, []);
+
   return (
     <Wrapper>
       <CardWrapper>
@@ -235,8 +247,8 @@ function Home() {
         <p>Memorize character meanings like this:</p>
       </ExampleHeader>
       <ExampleWrapper>
-        <Example>
-          <Front>
+        <Example id="example">
+          <Front >
             <div className="lakeChar">湖 = lake</div>
             <PartsWrapper>
               <p>氵 = water</p>
@@ -246,13 +258,13 @@ function Home() {
           </Front>
           <Back>
             <p>
-              An <span>old</span> man is standing under the <span>moon</span> next to
-              the <span>water</span> of a <b>lake</b>.
+              An <span>old</span> man is standing under the <span>moon</span>{" "}
+              next to the <span>water</span> of a <b>lake</b>.
             </p>
           </Back>
         </Example>
       </ExampleWrapper>
-      <Footer />
+      <Footer  />
     </Wrapper>
   );
 }

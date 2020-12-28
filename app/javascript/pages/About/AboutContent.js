@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ContentWrapper = styled.div`
   width: 70%;
@@ -39,7 +40,7 @@ const AboutContent = (props) => {
       <p>
         HanziKanji is meant to be used as a study tool for learning Chinese characters (Hanzi) and / or
         Japanese characters (Kanji) using the Heisig method. The HanziKanji flashcards include mnemonic
-        stories for all characters included in the Heisig books. As displayed in the example on the home page,
+        stories for all characters included in the Heisig books. As displayed in <Link to="/home#example">the example on the home page</Link>,
         each character is broken up into its radical parts, and each part is given a meaning. The mnemonic stories
         are then composed using each of these parts. HanziKanji has two separate decks which are, not surprisingly, a
         deck for Kanji, and a deck for Hanzi.  Although Heisig separates the Simplified and Traditional Hanzi, it makes

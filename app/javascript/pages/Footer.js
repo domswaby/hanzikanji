@@ -20,7 +20,7 @@ const this_year = new Date().getFullYear();
 
 const Footer = (props) => {
   return (
-    <FooterWrap>© {this_year} hanzikanji.com <span>All Rights Reserved</span></FooterWrap>
+    <FooterWrap id="footer">© {this_year} hanzikanji.com <span>All Rights Reserved</span></FooterWrap>
   )
 }
 

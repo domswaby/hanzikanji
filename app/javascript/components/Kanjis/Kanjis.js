@@ -6,7 +6,6 @@ import Footer from "../../pages/Footer";
 import "./Slider.css";
 import { useParams } from "react-router-dom";
 
-
 const Home = styled.div``;
 
 const TableContainer = styled.div`
@@ -14,13 +13,13 @@ const TableContainer = styled.div`
 `;
 
 const Kanjis = (props) => {
-  const {page_param} = useParams();
-  const {deck_param} = useParams();
+  const { page_param } = useParams();
+  const { deck_param } = useParams();
   let kanjisPerPage = 50;
   let deck_length = 0;
-  if(deck_param === 'hanzis'){
+  if (deck_param === "hanzis") {
     deck_length = 4143;
-  }else{
+  } else {
     deck_length = 3030;
   }
 
@@ -32,14 +31,19 @@ const Kanjis = (props) => {
   const [kanjis, setKanjis] = useState([]);
   const [page, setPage] = useState(page_param);
   const [deck, setDeck] = useState(deck_param);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     // Get all of our kanjis from api
     // Update kanjis in our state
+    setLoaded(false);
     setDeck(deck_param);
     axios
       .get(`/api/v1/${deck_param}/page/${page}.json`)
-      .then((resp) => setKanjis(resp.data.data))
+      .then((resp) => {
+        setKanjis(resp.data.data);
+        setLoaded(true);
+      })
       .catch((resp) => console.log(resp));
   }, [kanjis.length, deck_param]);
 
@@ -77,11 +81,11 @@ const Kanjis = (props) => {
           className="slider"
           id="myRange"
         />
-    </div>
+      </div>
       <TableContainer>
-        <Datatable data={data} deck={deck_param}/>
+        <Datatable data={data} deck={deck_param} />
       </TableContainer>
-      <Footer />
+      {loaded && (<Footer />)} 
     </Home>
   );
 };
