@@ -11,7 +11,7 @@ const Wrapper = styled.div``;
 
 const CardWrapper = styled.div`
   background: linear-gradient(var(--strong-red-home), var(--cream-white-home)),
-    url(${card_img});
+    asset-url("chinese_flashcards.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
