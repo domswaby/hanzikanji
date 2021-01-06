@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 import styled from "styled-components";
-import card_img from "./chinese_flashcards.jpg";
+import card_img from "../../assets/images/chinese_flashcards.jpg";
 import Footer from "./Footer";
-import lake_kanji_img from "./lake_kanji_pic.png";
+import lake_kanji_img from "../../assets/images/lake_kanji_pic.png";
 import { GiCardRandom } from "react-icons/gi";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
