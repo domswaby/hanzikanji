@@ -13,7 +13,7 @@ import About from "../pages/About/About";
 import styled from "styled-components";
 import cangJie_img from "../../assets/images/CangjieBlackWhite.jpg";
 import charPic_img from "../../assets/images/Favicons/zi_written_small.jpg";
-import "./App.css";
+import "../../assets/stylesheets/App.css";
 
 const CangJie = styled.div`
   position: absolute;
@@ -40,7 +40,6 @@ const App = () => {
     <Fragment>
       <Navbar />
       <CangJie></CangJie>
-
       <Switch>
         <Route exact path="/list/:deck_param/:page_param">
           <Kanjis />
