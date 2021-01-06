@@ -3,7 +3,7 @@ import Datatable from "./Datatable/Datatable";
 import axios from "axios";
 import styled from "styled-components";
 import Footer from "../../pages/Footer";
-import "./Slider.css";
+import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
 
 const Home = styled.div``;
@@ -85,7 +85,7 @@ const Kanjis = (props) => {
       <TableContainer>
         <Datatable data={data} deck={deck_param} />
       </TableContainer>
-      {loaded && (<Footer />)} 
+      {loaded && (<Footer />)}
     </Home>
   );
 };

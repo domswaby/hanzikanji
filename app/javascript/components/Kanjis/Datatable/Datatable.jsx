@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import parse from "html-react-parser";
-import "./Datatable.css";
+import "../../../../assets/stylesheets/Datatable.css";
 
 const Datatable = ({ data, deck }) => {
   const columns = data[0] && Object.keys(data[0]);
