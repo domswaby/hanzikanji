@@ -1,13 +1,9 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
-import Airlines from "./Airlines/Airlines";
-import Airline from "./Airline/Airline";
 import Navbar from "./Navbar/Navbar";
 import Kanjis from "./Kanjis/Kanjis";
 import Kanji from "./Kanji/Kanji";
 import Home from "../pages/Home";
-import Reports from "../pages/Reports";
-import Products from "../pages/Products";
 import Contact from "../pages/Contact";
 import About from "../pages/About/About";
 import styled from "styled-components";
@@ -59,7 +55,7 @@ const App = () => {
         <Route exact path="/" >
           <Home />
         </Route>
-        <Route exact path="/airlines/:slug" component={Airline} />
+        
       </Switch>
     </Fragment>
   );

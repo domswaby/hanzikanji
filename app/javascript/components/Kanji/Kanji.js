@@ -70,6 +70,8 @@ const Kanji = (props) => {
         setLoaded(true);
       })
       .catch((resp) => console.log(resp));
+
+
   }, [deck]);
 
   // find index of character received from params in kanjis
