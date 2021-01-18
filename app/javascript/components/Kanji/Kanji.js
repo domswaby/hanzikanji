@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import Card from "./Card";
+import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop"
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
@@ -156,7 +157,7 @@ const Kanji = (props) => {
 
   return (
     <Fragment>
-      {loaded && (
+      {loaded? (
         <div>
           <Card
             data={data}
@@ -167,7 +168,7 @@ const Kanji = (props) => {
             showInfo={showInfo}
           />
         </div>
-      )}
+      ) : <SimpleBackdrop />}
       <Controls>
         <div onClick={prevCard}>Previous</div>
         <div onClick={nextCard}>Next</div>
