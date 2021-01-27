@@ -6,6 +6,7 @@ import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
 import Footer from "../../pages/Footer";
 import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
+import * as localForage from "localforage";
 
 const Home = styled.div``;
 
@@ -39,19 +40,50 @@ const Kanjis = (props) => {
     // Update kanjis in our state
     setLoaded(false);
     setDeck(deck_param);
-    axios
-      .get(`/api/v1/${deck_param}/page/${page}.json`)
-      .then((resp) => {
-        setKanjis(resp.data.data);
-        setLoaded(true);
+    let item = deck_param + page;
+    localForage
+      .getItem(item)
+      .then((response) => {
+        if (!response) {
+          axios
+            .get(`/api/v1/${deck_param}/page/${page}.json`)
+            .then((resp) => {
+              return localForage.setItem(item, resp.data.data);
+            })
+            .then((resp) => {
+              console.log("Retrieved from Server");
+              setKanjis(resp);
+              setLoaded(true);
+            })
+            .catch((resp) => console.log(resp));
+        } else {
+          setKanjis(response);
+          setLoaded(true);
+          console.log("Retrieved from localForage");
+        }
       })
       .catch((resp) => console.log(resp));
-  }, [kanjis.length, deck_param]);
+  }, [deck_param]);
 
   const getKanjis = () => {
-    axios
-      .get(`/api/v1/${deck_param}/page/${page}.json`)
-      .then((resp) => setKanjis(resp.data.data))
+    let item = deck_param + page;
+    localForage
+      .getItem(item)
+      .then((response) => {
+        if (!response) {
+          axios
+            .get(`/api/v1/${deck_param}/page/${page}.json`)
+            .then((resp) => {
+              return localForage.setItem(item, resp.data.data);
+            })
+            .then((resp) => setKanjis(resp))
+            .catch((resp) => console.log(resp));
+        } else {
+          setKanjis(response);
+          setLoaded(true);
+          console.log("Retrieved from localForage");
+        }
+      })
       .catch((resp) => console.log(resp));
   };
 
