@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import Card from "./Card";
-import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop"
+import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-
+import * as localForage from "localforage";
 
 const Home = styled.div``;
 const Controls = styled.div`
@@ -48,7 +48,6 @@ const Kanji = (props) => {
   let totalPages = 3030 / kanjisPerPage;
   let first_kanji_number = pageNumber * 50 - 49;
   let last_kanji_number = pageNumber * 50;
-
   let char_index = num - first_kanji_number;
 
   const [loaded, setLoaded] = useState(false);
@@ -61,27 +60,47 @@ const Kanji = (props) => {
   useEffect(() => {
     // Get all kanjis from api
     // Update kanjis in state
-      setLoaded(false);
-    axios
-      .get(`/api/v1/${deck}/page/${page}.json`)
-      .then((resp) => {
-        setKanjis(resp.data.data);
-        getIndex(resp.data.data);
-        setLoaded(true);
+    setLoaded(false);
+    let item = deck + page;
+    console.log(`Item = ${item}`);
+    console.log(`Deck = ${deck}`);
+
+    localForage
+      .getItem(item)
+      .then((response) => {
+        console.log(`Response = ${response}`);
+        if (!response) {
+          axios
+            .get(`/api/v1/${deck}/page/${page}.json`)
+            .then((resp) => {
+              return saveToForage(item, resp.data.data);
+            })
+            .then((resp) => {
+              setKanjis(resp);
+              getIndex(resp);
+              setLoaded(true);
+            })
+            .catch((resp) => console.log(resp));
+        } else {
+          setKanjis(response);
+          getIndex(response);
+          setLoaded(true);
+          console.log("Retrieved from localForage");
+        }
       })
       .catch((resp) => console.log(resp));
-
-
   }, [deck]);
 
   // find index of character received from params in kanjis
+
+  const saveToForage = (item, data) => {
+    return localForage.setItem(item, data);
+  };
 
   const getIndex = (input) => {
     const data_for_get_index = input.map((item) => {
       return item.attributes;
     });
-    console.log("it worked");
-    console.log(data_for_get_index.length);
 
     let idx1 = 0;
     let cur_char = "";
@@ -97,21 +116,49 @@ const Kanji = (props) => {
   // *** find the index of the kanji received through params
   const getKanjis = (direction, new_page) => {
     setLoaded(false);
-    axios
-      .get(`/api/v1/${deck}/page/${new_page}.json`)
-      .then((resp) => {
-        if (direction === "up") {
-          console.log("Im in the up direction if statement");
-          console.log(resp.data.data);
-          setKanjis(resp.data.data);
-          setIndex(0);
-          setPage((old_page) => old_page + 1);
+    let item = deck + new_page;
+    localForage
+      .getItem(item)
+      .then((response) => {
+        if (!response) {
+          axios
+            .get(`/api/v1/${deck}/page/${new_page}.json`)
+            .then((resp) => {
+              return saveToForage(item, resp.data.data);
+            })
+            .then((resp) => {
+              if (direction === "up") {
+                console.log("Im in the up direction if statement");
+                console.log(resp);
+                setKanjis(resp);
+                setIndex(0);
+                setPage((old_page) => old_page + 1);
+              } else {
+                setKanjis(resp);
+                setIndex(resp.length - 1);
+                setPage((old_page) => old_page - 1);
+              }
+              setLoaded(true);
+            })
+            .catch((resp) => console.log(resp));
         } else {
-          setKanjis(resp.data.data);
-          setIndex(resp.data.data.length - 1);
-          setPage((old_page) => old_page - 1);
+          if (direction === "up") {
+            setKanjis(response);
+            setIndex(0);
+            setPage((old_page) => old_page + 1);
+            setLoaded(true);
+            console.log("Retrieved from localForage");
+            console.log("Going up now...");
+          }
+          else{
+            setKanjis(response);
+            setIndex(response.length - 1);
+            setPage((old_page) => old_page - 1);
+            setLoaded(true);
+            console.log("Retrieved from localForage");
+            console.log("Going down now...");
+          }
         }
-        setLoaded(true);
       })
       .catch((resp) => console.log(resp));
   };
@@ -159,7 +206,7 @@ const Kanji = (props) => {
 
   return (
     <Fragment>
-      {loaded? (
+      {loaded ? (
         <div>
           <Card
             data={data}
@@ -170,7 +217,9 @@ const Kanji = (props) => {
             showInfo={showInfo}
           />
         </div>
-      ) : <SimpleBackdrop />}
+      ) : (
+        <SimpleBackdrop />
+      )}
       <Controls>
         <div onClick={prevCard}>Previous</div>
         <div onClick={nextCard}>Next</div>
