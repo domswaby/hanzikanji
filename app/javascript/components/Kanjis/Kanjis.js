@@ -51,7 +51,7 @@ const Kanjis = (props) => {
               return localForage.setItem(item, resp.data.data);
             })
             .then((resp) => {
-              console.log("Retrieved from Server");
+
               setKanjis(resp);
               setLoaded(true);
             })
@@ -59,7 +59,7 @@ const Kanjis = (props) => {
         } else {
           setKanjis(response);
           setLoaded(true);
-          console.log("Retrieved from localForage");
+
         }
       })
       .catch((resp) => console.log(resp));
@@ -81,7 +81,7 @@ const Kanjis = (props) => {
         } else {
           setKanjis(response);
           setLoaded(true);
-          console.log("Retrieved from localForage");
+
         }
       })
       .catch((resp) => console.log(resp));

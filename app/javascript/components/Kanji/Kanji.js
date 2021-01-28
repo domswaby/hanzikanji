@@ -62,13 +62,11 @@ const Kanji = (props) => {
     // Update kanjis in state
     setLoaded(false);
     let item = deck + page;
-    console.log(`Item = ${item}`);
-    console.log(`Deck = ${deck}`);
 
     localForage
       .getItem(item)
       .then((response) => {
-        console.log(`Response = ${response}`);
+
         if (!response) {
           axios
             .get(`/api/v1/${deck}/page/${page}.json`)
@@ -85,7 +83,7 @@ const Kanji = (props) => {
           setKanjis(response);
           getIndex(response);
           setLoaded(true);
-          console.log("Retrieved from localForage");
+
         }
       })
       .catch((resp) => console.log(resp));
@@ -128,8 +126,7 @@ const Kanji = (props) => {
             })
             .then((resp) => {
               if (direction === "up") {
-                console.log("Im in the up direction if statement");
-                console.log(resp);
+
                 setKanjis(resp);
                 setIndex(0);
                 setPage((old_page) => old_page + 1);
@@ -147,16 +144,12 @@ const Kanji = (props) => {
             setIndex(0);
             setPage((old_page) => old_page + 1);
             setLoaded(true);
-            console.log("Retrieved from localForage");
-            console.log("Going up now...");
           }
           else{
             setKanjis(response);
             setIndex(response.length - 1);
             setPage((old_page) => old_page - 1);
             setLoaded(true);
-            console.log("Retrieved from localForage");
-            console.log("Going down now...");
           }
         }
       })
