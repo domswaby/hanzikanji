@@ -67,6 +67,7 @@ const Kanjis = (props) => {
 
   const getKanjis = () => {
     let item = deck_param + page;
+    setLoaded(false);
     localForage
       .getItem(item)
       .then((response) => {
@@ -76,7 +77,10 @@ const Kanjis = (props) => {
             .then((resp) => {
               return localForage.setItem(item, resp.data.data);
             })
-            .then((resp) => setKanjis(resp))
+            .then((resp) => {
+              setKanjis(resp)
+              setLoaded(true); 
+            })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
