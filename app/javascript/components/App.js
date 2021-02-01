@@ -6,6 +6,7 @@ import Kanji from "./Kanji/Kanji";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import About from "../pages/About/About";
+import Donate from "../pages/Donate";
 import styled from "styled-components";
 import cangJie_img from "../../assets/images/CangjieBlackWhite.jpg";
 import charPic_img from "../../assets/images/Favicons/zi_written_small.jpg";
@@ -52,10 +53,13 @@ const App = () => {
         <Route exact path="/about">
           <About />
         </Route>
+        <Route exact path="/donate">
+          <Donate />
+        </Route>
         <Route exact path="/" >
           <Home />
         </Route>
-        
+
       </Switch>
     </Fragment>
   );

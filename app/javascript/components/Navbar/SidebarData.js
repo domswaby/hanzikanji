@@ -48,5 +48,11 @@ export const SidebarData = [
     path: "/about",
     icon: <BsIcons.BsInfoSquare />,
     cName: "nav-text",
+  },
+  {
+    title: "Donate",
+    path: "/donate",
+    icon: <FaIcons.FaBitcoin />,
+    cName: "nav-text",
   }
 ];
