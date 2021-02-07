@@ -59,9 +59,6 @@ const TwitterWrapper = styled.div`
     width: 125px;
     margin: 0 0 0.5em 0;
   }
-  .btc_alpha_num{
-    font-size: 0.5em;
-  }
   div {
     text-align: center;
     margin: 0 0 0.1em 0;
@@ -69,16 +66,60 @@ const TwitterWrapper = styled.div`
     font-size: 3em;
 
   }
-  AiOutlineCopy{
-    cursor: pointer;
+  .btc_alpha_num{
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .copy_icon{
     cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 2em;
+    margin-left: 0.5em;
+    padding: 0.2em;
+    :hover{
+      box-shadow: 0px 0px 5px 8px rgba(0,0,0,0.35);
+    }
+    :active{
+      border: 1px solid var(--dark-gray);
+    }
   }
   @media only screen and (max-width: 600px) {
     font-size: 1.5em;
+    .btc_alpha_num{
+      flex-direction: column;
+      span{
+        margin-bottom: 1em;
+      }
+    }
+    .copy_icon{
+      margin-left: 0;
+    }
   }
 `;
+
+const CommentWrapper = styled.div`
+
+  text-indent: 2em;
+  z-index: -100;
+  p{
+    width: 40%;
+    text-align: left;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+  @media only screen and (max-width: 900px) {
+    p{
+      width:90%;
+
+    }
+
+  }
+`;
+
 const CopySuccess = styled.div`
   position: absolute;
   height: 80px;
@@ -94,11 +135,11 @@ const CopySuccess = styled.div`
 
 
 const Donate = () => {
-
+  const p_address = "1K3G2Cr7rbMmRm4jZNzdHcfTL1x1kGL69W";
   const [showCopy, setShowCopy] = useState(false);
 
   const copyToClipboard = () => {
-    window.navigator.clipboard.writeText("1K3G2Cr7rbMmRm4jZNzdHcfTL1x1kGL69W");
+    window.navigator.clipboard.writeText(p_address);
     setShowCopy(true);
     setTimeout(function(){ setShowCopy(false); }, 3000);
   };
@@ -106,6 +147,7 @@ const Donate = () => {
   return (
     <div>
       <Wrapper>
+        <CommentWrapper><p>Any donations no matter the size are very much appreciated.  If you would like to donate please send <b>only</b> bitcoin to the below address.</p></CommentWrapper>
         <CopySuccess className={showCopy? "showSuccess" : "hideSuccess"}><p>Copied address to clipboard</p></CopySuccess>
         <TwitterWrapper href="https://twitter.com/HanziKanjiCards" target="_blank">
           <div>
@@ -114,7 +156,7 @@ const Donate = () => {
           </div>
           <div className="donate_btc_qr"></div>
           <p className="btc_alpha_num">
-            1K3G2Cr7rbMmRm4jZNzdHcfTL1x1kGL69W <AiOutlineCopy className="copy_icon" onClick={copyToClipboard}/>
+            <span>{p_address}</span> <button className="copy_icon"><AiOutlineCopy  onClick={copyToClipboard}/></button>
           </p>
         </TwitterWrapper>
       </Wrapper>
