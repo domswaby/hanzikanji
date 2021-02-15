@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "airlines", force: :cascade do |t|
-    t.string "name"
-    t.string "image_url"
-    t.string "slug"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "hanzi_parts", force: :cascade do |t|
     t.bigint "hanzi_id", null: false
@@ -66,28 +59,10 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.integer "score"
-    t.bigint "airline_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["airline_id"], name: "index_reviews_on_airline_id"
-  end
-
-  create_table "thanzis", force: :cascade do |t|
-    t.string "hanzi"
-    t.string "meaning"
-    t.text "story"
-    t.integer "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   add_foreign_key "hanzi_parts", "hanzis"
   add_foreign_key "hanzi_parts", "parts"
   add_foreign_key "kanji_parts", "kanjis"
   add_foreign_key "kanji_parts", "parts"
-  add_foreign_key "reviews", "airlines"
+
 end
