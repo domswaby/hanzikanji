@@ -6,13 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Thanzi.delete_all
-# Kanji.delete_all
-# Hanzi.delete_all
-# Part.delete_all
-# Kanji.delete_all
-# Airline.delete_all
-# Review.delete_all
 
 if Part.count == 0
   path = File.join(File.dirname(__FILE__), './k_and_t_and_s_hanzi_parts.json')
@@ -23,11 +16,13 @@ end
 
 if Kanji.count == 0
   count = 0
+  count2 = 0
+  count3 = 0
   path = File.join(File.dirname(__FILE__), './kanji_stories_medium_with_markup_2.json')
   records = JSON.parse(File.read(path))
 
   records.each do |record|
-    puts "This is the a record: #{record}"
+    # puts "This is the a record: #{record}"
     new_record = {
       :char => record["char"],
       :meaning => record["meaning"],
@@ -38,13 +33,20 @@ if Kanji.count == 0
     new_kanji = Kanji.create!(new_record)
 
     record["parts"].each do |part|
-      next if !part["meaning"]
+
+      if part["meaning"].empty?
+        count3+=1
+        next
+      end
+
       new_part_for_kanji = Part.find_by(part: part["part"], meaning: part["meaning"])
+
       if !new_part_for_kanji
         count+=1
         next
       end
       new_kanji.parts << new_part_for_kanji
+      count2+=1
     end
 
     new_kanji.save
@@ -53,16 +55,20 @@ if Kanji.count == 0
   # kanji = Kanji.create(records)
   puts 'Kanji are seeded'
   puts "#{count} parts not found"
+  puts "#{count2} parts added"
+  puts "#{count3} meanings absent"
 end
 
 
 if Hanzi.count == 0
   count = 0
+  count2 = 0
+  count3 = 0
   path = File.join(File.dirname(__FILE__), './t_and_s_hanzi_medium_with_markup_2.json')
   records = JSON.parse(File.read(path))
 
   records.each do |record|
-    puts "This is the a record: #{record}"
+    # puts "This is the a record: #{record}"
     new_record = {
       :char => record["char"],
       :meaning => record["meaning"],
@@ -73,13 +79,17 @@ if Hanzi.count == 0
     new_hanzi = Hanzi.create!(new_record)
 
     record["parts"].each do |part|
-      next if !part["meaning"]
+      if part["meaning"].empty?
+        count3+=1
+        next
+      end
       new_part_for_hanzi = Part.find_by(part: part["part"], meaning: part["meaning"])
       if !new_part_for_hanzi
         count+=1
         next
       end
       new_hanzi.parts << new_part_for_hanzi
+      count2+=1
     end
 
     new_hanzi.save
@@ -88,4 +98,6 @@ if Hanzi.count == 0
   # kanji = Kanji.create(records)
   puts 'Hanzi are seeded'
   puts "#{count} parts not found"
+  puts "#{count2} parts added"
+  puts "#{count3} meanings absent"
 end
