@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import Datatable from "./Datatable/Datatable";
+import Search from "./Search/Search";
 import axios from "axios";
 import styled from "styled-components";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
@@ -105,6 +106,7 @@ const Kanjis = (props) => {
 
   return (
     <Home>
+      
       <div className="slidecontainer">
         <p>Page: <span>#{page}</span></p>
         <input
