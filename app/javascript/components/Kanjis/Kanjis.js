@@ -79,7 +79,7 @@ const Kanjis = (props) => {
             })
             .then((resp) => {
               setKanjis(resp)
-              setLoaded(true); 
+              setLoaded(true);
             })
             .catch((resp) => console.log(resp));
         } else {
@@ -106,7 +106,7 @@ const Kanjis = (props) => {
   return (
     <Home>
       <div className="slidecontainer">
-        <p>Current Page: #{page}</p>
+        <p>Page: <span>#{page}</span></p>
         <input
           type="range"
           min="1"
