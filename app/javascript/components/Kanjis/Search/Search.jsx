@@ -17,25 +17,29 @@ const SearchWrap = styled.div`
       width: 50%;
       padding: 0.5em;
       font-size: 1.2em;
-      border: none;
-      border: 3px solid var(--light-gray);
+      border: 4px solid var(--light-gray);
+      &:hover{
+        border: 4px solid var(--lighter-gray);
+
+      }
+      &:focus{
+        border: 4px solid var(--dark-gray);
+        outline: none;
+      }
     }
     label{
       padding: 0.5em 0.6em;
       display: block;
     }
     button{
-      background-color: transparent;
-      outline: none;
-      border: none;
       padding: 0.5em;
       font-size: 1.2em;
-      border: 3px solid var(--light-gray);
+      border: 10px solid var(--light-gray);
       width: 30%;
       border-radius: 10%;
       &:hover{
         cursor: pointer;
-        border: 3px solid var(--dark-gray);
+        border: 10px solid var(--dark-gray);
 
       }
     }
@@ -51,7 +55,6 @@ const Search = (props) => {
   return (
     <SearchWrap>
       <div>
-
         <input type="text" id="searcher" placeholder="Char / Meaning / #"/>
         <button>Search <BsIcons.BsSearch/></button>
       </div>
