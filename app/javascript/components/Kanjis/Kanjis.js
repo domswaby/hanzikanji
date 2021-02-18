@@ -106,7 +106,7 @@ const Kanjis = (props) => {
 
   return (
     <Home>
-      
+      <Search />
       <div className="slidecontainer">
         <p>Page: <span>#{page}</span></p>
         <input
