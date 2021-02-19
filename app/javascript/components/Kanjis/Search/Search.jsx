@@ -42,6 +42,11 @@ const SearchWrap = styled.div`
         border: 10px solid var(--dark-gray);
 
       }
+      &:focus{
+        outline: none;
+        border: 10px solid var(--lighter-gray);
+
+      }
     }
   }
   @media only screen and (max-width: 600px) {
@@ -52,11 +57,18 @@ const SearchWrap = styled.div`
 `
 
 const Search = (props) => {
+  const searchRequest = () => {
+    console.log(props.search);
+  }
+  const updateSearch = (e) => {
+    props.setSearch(e.target.value);
+  }
+
   return (
     <SearchWrap>
       <div>
-        <input type="text" id="searcher" placeholder="Char / Meaning / #"/>
-        <button>Search <BsIcons.BsSearch/></button>
+        <input type="text" id="searcher" placeholder="Char / Meaning / #" onChange={updateSearch} />
+        <button onClick={searchRequest}>Search <BsIcons.BsSearch/></button>
       </div>
     </SearchWrap>
   )

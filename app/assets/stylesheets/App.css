@@ -29,4 +29,6 @@
   --dark-gray: rgba(72, 72, 72, 1);
   --dark-gray-home: rgba(72, 72, 72, 0.6);
   --light-blue: rgba(26, 131, 255, 1);
+  --bch-green: rgb(141, 195, 81);
+  --nice-green: #4caf50; 
 }

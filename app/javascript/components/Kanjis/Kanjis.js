@@ -32,6 +32,7 @@ const Kanjis = (props) => {
   let last_kanji_number = page_param * 50;
 
   const [kanjis, setKanjis] = useState([]);
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(page_param);
   const [deck, setDeck] = useState(deck_param);
   const [loaded, setLoaded] = useState(false);
@@ -52,7 +53,6 @@ const Kanjis = (props) => {
               return localForage.setItem(item, resp.data.data);
             })
             .then((resp) => {
-
               setKanjis(resp);
               setLoaded(true);
             })
@@ -60,7 +60,6 @@ const Kanjis = (props) => {
         } else {
           setKanjis(response);
           setLoaded(true);
-
         }
       })
       .catch((resp) => console.log(resp));
@@ -79,14 +78,13 @@ const Kanjis = (props) => {
               return localForage.setItem(item, resp.data.data);
             })
             .then((resp) => {
-              setKanjis(resp)
+              setKanjis(resp);
               setLoaded(true);
             })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
           setLoaded(true);
-
         }
       })
       .catch((resp) => console.log(resp));
@@ -104,11 +102,24 @@ const Kanjis = (props) => {
     getKanjis();
   };
 
+  const doSearch = (input) => {
+    setLoaded(false);
+    axios
+      .get(`/api/v1/${deck_param}/page/${page}.json`)
+      .then((resp) => {
+        setKanjis(resp);
+        setLoaded(true);
+      })
+      .catch((resp) => console.log(resp));
+  };
+
   return (
     <Home>
-      <Search />
+      <Search search={search} setSearch={setSearch} />
       <div className="slidecontainer">
-        <p>Page: <span>#{page}</span></p>
+        <p>
+          Page: <span>#{page}</span>
+        </p>
         <input
           type="range"
           min="1"
