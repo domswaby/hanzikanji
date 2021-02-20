@@ -58,7 +58,7 @@ const SearchWrap = styled.div`
 
 const Search = (props) => {
   const searchRequest = () => {
-    console.log(props.search);
+    props.doSearch(props.search);
   }
   const updateSearch = (e) => {
     props.setSearch(e.target.value);

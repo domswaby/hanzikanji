@@ -103,11 +103,12 @@ const Kanjis = (props) => {
   };
 
   const doSearch = (input) => {
+    console.log(`This is doSearch input: ${input}`);
     setLoaded(false);
     axios
-      .get(`/api/v1/${deck_param}/page/${page}.json`)
+      .get(`/api/v1/${deck_param}/search/num/${input}.json`)
       .then((resp) => {
-        setKanjis(resp);
+        setKanjis(resp.data.data);
         setLoaded(true);
       })
       .catch((resp) => console.log(resp));
@@ -115,7 +116,7 @@ const Kanjis = (props) => {
 
   return (
     <Home>
-      <Search search={search} setSearch={setSearch} />
+      <Search search={search} setSearch={setSearch} doSearch={doSearch}/>
       <div className="slidecontainer">
         <p>
           Page: <span>#{page}</span>

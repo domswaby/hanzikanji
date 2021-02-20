@@ -22,15 +22,24 @@ module Api
         render json: KanjiSerializer.new(kanjis, options).serialized_json
       end
 
+      def search
+        #  *** calculating the right pageNumber for some kanji and the corresponding first_kanji_number on that page ***
+        target = params[:target]
+        target_type = params[:type]
+        kanjis = Kanji.where(number: target.to_i).order(:number) if target_type == 'num'
+        render json: KanjiSerializer.new(kanjis, options).serialized_json
+      end
 
       private
 
       def kanji_params
         params.require(:num)
+        params.require(:type)
+        params.require(:target)
       end
 
       def options
-        @options ||= { include: %i[parts]}
+        @options ||= { include: %i[parts] }
         # maybe change to [kanji_parts]
       end
     end

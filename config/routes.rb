@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   get 'api/v1/kanjis/page/:num' => 'api/v1/kanjis#page'
+  get 'api/v1/kanjis/search/:type/:target' => 'api/v1/kanjis#search'
   get 'api/v1/kanjis' => 'api/v1/kanjis#index'
   get 'api/v1/hanzis/page/:num' => 'api/v1/hanzis#page'
   get 'api/v1/hanzis' => 'api/v1/hanzis#index'
