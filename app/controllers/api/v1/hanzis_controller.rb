@@ -22,11 +22,27 @@ module Api
         render json: HanziSerializer.new(hanzis, options).serialized_json
       end
 
+      def search
+        #  *** calculating the right pageNumber for some kanji and the corresponding first_kanji_number on that page ***
+        target = params[:target]
+        target_type = params[:type]
+        hanzis = if target_type == 'num'
+                   Hanzi.where(number: target.to_i).order(:number)
+                 elsif target_type == 'char'
+                   Hanzi.where(char: target).order(:number)
+                 else
+                   Hanzi.where(meaning: target).order(:number)
+                 end
+        render json: HanziSerializer.new(hanzis, options).serialized_json
+      end
+
 
       private
 
       def hanzi_params
         params.require(:num)
+        params.require(:type)
+        params.require(:target)
       end
 
       def options

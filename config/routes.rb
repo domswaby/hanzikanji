@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'api/v1/kanjis/search/:type/:target' => 'api/v1/kanjis#search'
   get 'api/v1/kanjis' => 'api/v1/kanjis#index'
   get 'api/v1/hanzis/page/:num' => 'api/v1/hanzis#page'
+  get 'api/v1/hanzis/search/:type/:target' => 'api/v1/hanzis#search'
   get 'api/v1/hanzis' => 'api/v1/hanzis#index'
   get '*path', to: 'pages#index', via: :all
 

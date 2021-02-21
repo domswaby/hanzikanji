@@ -5,6 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
 import Footer from "../../pages/Footer";
+import containsChinese from "contains-chinese";
 import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
 import * as localForage from "localforage";
@@ -36,6 +37,7 @@ const Kanjis = (props) => {
   const [page, setPage] = useState(page_param);
   const [deck, setDeck] = useState(deck_param);
   const [loaded, setLoaded] = useState(false);
+  const [searchErr, setSearchErr] = useState({});
 
   useEffect(() => {
     // Get all of our kanjis from api
@@ -80,11 +82,13 @@ const Kanjis = (props) => {
             .then((resp) => {
               setKanjis(resp);
               setLoaded(true);
+              setSearchErr({});
             })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
           setLoaded(true);
+          setSearchErr({}); 
         }
       })
       .catch((resp) => console.log(resp));
@@ -103,20 +107,72 @@ const Kanjis = (props) => {
   };
 
   const doSearch = (input) => {
-    console.log(`This is doSearch input: ${input}`);
-    setLoaded(false);
-    axios
-      .get(`/api/v1/${deck_param}/search/num/${input}.json`)
-      .then((resp) => {
-        setKanjis(resp.data.data);
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
+    let target_type;
+    let isValid = false;
+    let new_error = {};
+    input = input.trim();
+    // check if it's chinese or japanese
+    if (containsChinese(input)) {
+      if (input.length > 1) {
+        new_error = { charTooLong: "Char search must be only one character" };
+      } else {
+        isValid = true;
+        target_type = "char";
+      }
+    }
+    // check if it's a number
+    else if (!isNaN(input)) {
+      if (deck_param === "kanjis") {
+        if (input > 3030) {
+          new_error = { tooHigh: "Max number is 3030" };
+        } else if (input < 1) {
+          new_error = { tooLow: "Min number is 1" };
+        } else {
+          isValid = true;
+          target_type = "num";
+        }
+      } else if (deck_param === "hanzis") {
+        if (input > 3035) {
+          new_error = { tooHigh: "Max number is 3035" };
+        } else if (input < 1) {
+          new_error = { tooLow: "Min number is 1" };
+        } else {
+          isValid = true;
+          target_type = "num";
+        }
+      }
+    }
+    // check if it's an english letter
+    else if (input.match(/[a-z]/i)) {
+      isValid = true;
+      target_type = "meaning";
+    } else {
+      new_error = { invalidInput: "Invalid input" };
+    }
+    if (isValid) {
+      setLoaded(false);
+      setSearchErr({});
+      axios
+        .get(`/api/v1/${deck_param}/search/${target_type}/${input}.json`)
+        .then((resp) => {
+          setKanjis(resp.data.data);
+          setLoaded(true);
+        })
+        .catch((resp) => console.log(resp));
+    } else {
+      setSearchErr(new_error);
+    }
   };
 
   return (
     <Home>
-      <Search search={search} setSearch={setSearch} doSearch={doSearch}/>
+      <Search
+        search={search}
+        setSearch={setSearch}
+        doSearch={doSearch}
+        searchErr={searchErr}
+        setSearchErr={setSearchErr}
+      />
       <div className="slidecontainer">
         <p>
           Page: <span>#{page}</span>

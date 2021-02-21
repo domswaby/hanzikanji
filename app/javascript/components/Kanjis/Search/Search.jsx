@@ -7,6 +7,12 @@ import * as BsIcons from "react-icons/bs";
 const SearchWrap = styled.div`
   width: 100%;
   background-color: var(--lighter-gray);
+  p{
+    margin: 0 auto;
+    padding: 0.2em 1em;
+    text-align: center;
+    background-color: var(--strong-red-home);
+  }
   div{
     width: 65%;
     margin: 0 auto;
@@ -70,6 +76,9 @@ const Search = (props) => {
         <input type="text" id="searcher" placeholder="Char / Meaning / #" onChange={updateSearch} />
         <button onClick={searchRequest}>Search <BsIcons.BsSearch/></button>
       </div>
+      {Object.keys(props.searchErr).map((key) => {
+          return <p>{props.searchErr[key]}</p>
+      })}
     </SearchWrap>
   )
 }

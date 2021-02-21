@@ -2323,6 +2323,11 @@ constants-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
   integrity sha1-wguW2MYXdIqvHBYCF2DNJ/y4y3U=
 
+contains-chinese@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/contains-chinese/-/contains-chinese-1.0.0.tgz#9a8bf78780759f5b752f6123fdc6b443be026b77"
+  integrity sha512-ed/6fWFGA2+bnrE+3B7sQRW4nisdaaOqoW+vCTYE0rJjnDsaO0DpHxvdB83+ALw04RW/a6SNYRJ4KmdyC1NJWg==
+
 content-disposition@0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.3.tgz#e130caf7e7279087c5616c2007d0485698984fbd"

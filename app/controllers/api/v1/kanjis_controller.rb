@@ -26,7 +26,13 @@ module Api
         #  *** calculating the right pageNumber for some kanji and the corresponding first_kanji_number on that page ***
         target = params[:target]
         target_type = params[:type]
-        kanjis = Kanji.where(number: target.to_i).order(:number) if target_type == 'num'
+        kanjis = if target_type == 'num'
+                   Kanji.where(number: target.to_i).order(:number)
+                 elsif target_type == 'char'
+                   Kanji.where(char: target).order(:number)
+                 else
+                   Kanji.where(meaning: target).order(:number)
+                 end
         render json: KanjiSerializer.new(kanjis, options).serialized_json
       end
 
