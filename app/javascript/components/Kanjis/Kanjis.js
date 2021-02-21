@@ -10,10 +10,12 @@ import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
 import * as localForage from "localforage";
 
-const Home = styled.div``;
+const Home = styled.div`
+`;
 
 const TableContainer = styled.div`
   margin-bottom: 2em;
+  min-height: 80vh;
 `;
 
 const Kanjis = (props) => {
@@ -88,7 +90,7 @@ const Kanjis = (props) => {
         } else {
           setKanjis(response);
           setLoaded(true);
-          setSearchErr({}); 
+          setSearchErr({});
         }
       })
       .catch((resp) => console.log(resp));
