@@ -134,7 +134,7 @@ const Card = (props) => {
   });
 
   return (
-    <Wrapper onClick={props.toggle}>
+    <Wrapper onClick={props.toggle} >
       <CardNumber>#{props.data[index].number}</CardNumber>
       <PageNumber>
         <Link to={`/list/${props.deck}/${props.pageNumber}`}>

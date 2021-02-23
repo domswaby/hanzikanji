@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import card_img from "../../assets/images/chinese_flashcards.jpg";
 import Footer from "./Footer";
+import HkButton from "../components/HkButton/HkButton"
 import lake_kanji_img from "../../assets/images/lake_kanji_pic.png";
 import { GiCardRandom } from "react-icons/gi";
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -223,6 +224,7 @@ function Home() {
 
   return (
     <Wrapper>
+    
       <CardWrapper>
         <Chinese>
           <Link className="my-link" to={`/cards/hanzis/1`}>

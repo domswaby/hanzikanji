@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from "react";
+import HkButton from "../HkButton/HkButton"
+
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -13,6 +15,7 @@ function Navbar() {
     <>
       <IconContext.Provider value={{color: '#fff'}}>
         <div className="navbar">
+            <HkButton /> 
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>

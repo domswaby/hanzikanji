@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useCallback, Fragment } from "react";
 import axios from "axios";
 import Card from "./Card";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
@@ -89,6 +89,13 @@ const Kanji = (props) => {
       .catch((resp) => console.log(resp));
   }, [deck]);
 
+  useEffect(() => {
+     document.addEventListener("keydown", handleKeyPress, false);
+
+     return () => {
+       document.removeEventListener("keydown", handleKeyPress, false);
+     };
+   }, []);
   // find index of character received from params in kanjis
 
   const saveToForage = (item, data) => {
@@ -162,7 +169,9 @@ const Kanji = (props) => {
 
   const nextCard = () => {
     setShowInfo(false);
+    console.log(deck);
     if (deck === "kanjis") {
+      console.log(data[index]);
       if (data[index].number === 3030) {
       } else if (index === 49) {
         let new_page = page + 1;
@@ -197,11 +206,22 @@ const Kanji = (props) => {
     setShowInfo((old_show_info) => !old_show_info);
   };
 
+  const handleKeyPress = useCallback((event) => {
+    console.log("triggered handleKeyPress")
+    if(event.keyCode === 39){
+      nextCard();
+    }
+    else if(event.keyCode === 37){
+      prevCard();
+    }
+  }, []);
+
   return (
-    <Fragment>
+    <Fragment >
       {loaded ? (
-        <div>
+        <div >
           <Card
+
             data={data}
             deck={deck}
             index={index}
