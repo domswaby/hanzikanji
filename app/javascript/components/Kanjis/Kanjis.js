@@ -169,7 +169,7 @@ const Kanjis = (props) => {
 
   return (
     <Home>
-              <HkButton />
+              <HkButton deck={deck}/>
       <Search
         search={search}
         setSearch={setSearch}

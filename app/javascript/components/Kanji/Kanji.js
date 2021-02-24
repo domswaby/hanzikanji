@@ -219,7 +219,7 @@ const Kanji = (props) => {
 
   return (
     <Fragment >
-      <HkButton />
+      <HkButton deck={deck}/>
       {loaded ? (
         <div >
           <Card
