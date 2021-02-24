@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, Fragment } from "react";
 import axios from "axios";
 import Card from "./Card";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
+import HkButton from "../HkButton/HkButton"
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import * as localForage from "localforage";
@@ -218,6 +219,7 @@ const Kanji = (props) => {
 
   return (
     <Fragment >
+      <HkButton />
       {loaded ? (
         <div >
           <Card

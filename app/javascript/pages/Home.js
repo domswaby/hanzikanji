@@ -224,7 +224,7 @@ function Home() {
 
   return (
     <Wrapper>
-    
+      <HkButton />
       <CardWrapper>
         <Chinese>
           <Link className="my-link" to={`/cards/hanzis/1`}>

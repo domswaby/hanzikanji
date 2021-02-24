@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ScrollMenu from "./ScrollMenu";
 import AboutContent from "./AboutContent";
 import Footer from "../Footer";
+import HkButton from "../../components/HkButton/HkButton"
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,8 +40,9 @@ const InnerWrapper = styled.div`
 function About() {
   return (
     <Wrapper>
+      <HkButton />
       <InnerWrapper>
-        <h1>About HanziKanji</h1>
+        <h1>About</h1>
         <ScrollMenu />
         <AboutContent />
       </InnerWrapper>

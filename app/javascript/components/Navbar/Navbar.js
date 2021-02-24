@@ -11,11 +11,13 @@ import { IconContext } from "react-icons";
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
+
+
   return (
     <>
       <IconContext.Provider value={{color: '#fff'}}>
         <div className="navbar">
-            <HkButton /> 
+
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>

@@ -43,7 +43,7 @@ const HkButton = (props) => {
       <div>
         <Link to="/list/hanzis/1"> Hanzi </Link>
         <span>/&nbsp;</span>
-        <Link to="/list / kanjis / 1 ">Kanji</Link>{" "}
+        <Link to="/list/kanjis/1">Kanji</Link>{" "}
       </div>{" "}
     </Wrapper>
   );

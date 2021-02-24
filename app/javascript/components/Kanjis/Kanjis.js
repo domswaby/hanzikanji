@@ -5,6 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
 import Footer from "../../pages/Footer";
+import HkButton from "../HkButton/HkButton"
 import containsChinese from "contains-chinese";
 import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
@@ -168,6 +169,7 @@ const Kanjis = (props) => {
 
   return (
     <Home>
+              <HkButton />
       <Search
         search={search}
         setSearch={setSearch}

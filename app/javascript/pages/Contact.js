@@ -3,6 +3,7 @@ import { FaTwitter } from "react-icons/fa";
 import { AiTwotoneMail } from "react-icons/ai";
 import styled from "styled-components";
 import Footer from "./Footer";
+import HkButton from "../components/HkButton/HkButton"
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,7 +58,9 @@ const MailWrapper = styled.div`
 function Contact() {
   return (
     <div>
+      
       <Wrapper>
+                <HkButton />
         <TwitterWrapper href="https://twitter.com/HanziKanjiCards" target="_blank">
           <div>
             <FaTwitter />

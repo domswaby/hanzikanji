@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import HkButton from "../components/HkButton/HkButton"
 import { FaBitcoin } from "react-icons/fa";
 import { FaEthereum } from "react-icons/fa";
 import { AiTwotoneMail } from "react-icons/ai";
@@ -146,6 +146,7 @@ const Donate = () => {
 
   return (
     <div>
+      <HkButton />
       <Wrapper>
         <CommentWrapper><p>Any donations no matter the size are very much appreciated.  If you would like to donate please send <b>only</b> bitcoin to the below address.</p></CommentWrapper>
         <CopySuccess className={showCopy? "showSuccess" : "hideSuccess"}><p>Copied address to clipboard</p></CopySuccess>
