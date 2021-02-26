@@ -12,7 +12,11 @@ const Datatable = ({ data, deck }) => {
         <tr>
           {data[0] &&
             columns.map((heading) => {
+              console.log(heading);
               if (heading !== "parts") {
+                if(heading === "number"){
+                  return <th>#</th>;
+                }
                 return <th>{heading}</th>;
               }
             })}
@@ -32,7 +36,15 @@ const Datatable = ({ data, deck }) => {
                     </td>
                   );
 
-                } else {
+                } else if (column === "number"){
+                  return (
+                    <td>
+                      <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{row[column]}</Link>
+                    </td>
+                  );
+
+                }
+                else {
                   return (
                     <td>
                       <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{row[column]}</Link>
