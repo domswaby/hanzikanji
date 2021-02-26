@@ -78,10 +78,12 @@ const Search = (props) => {
   const updateSearch = (e) => {
     props.setSearch(e.target.value);
     props.setSearchStory("");
+    document.getElementById("storyInput").value = "";
   };
   const updateSearchStory = (e) => {
     props.setSearchStory(e.target.value);
     props.setSearch("");
+    document.getElementById("multiInput").value = "";
   }
 
   return (
@@ -89,11 +91,13 @@ const Search = (props) => {
       <OuterInputWrap>
         <InnerInputWrap>
           <input
+            id="multiInput"
             type="text"
             placeholder="Char / Meaning / #"
             onChange={updateSearch}
           />
           <input
+            id="storyInput"
             type="text"
             placeholder="Story (words)"
             onChange={updateSearchStory}
