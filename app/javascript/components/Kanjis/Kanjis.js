@@ -115,52 +115,62 @@ const Kanjis = (props) => {
     let new_error = {};
     input = input.trim();
     // check if it's chinese or japanese
-    if (searchType === "searchStory") {
-      if(input.length > 40){
-        new_error = { storyTooLong: "Story search must be 40 characters or less"}
-      }
-      else{
-        isValid = true;
-        target_type = "story";
-      }
+    let specials = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (specials.test(input)) {
+      new_error = {
+        storyContainsSpecials: "Search can't contain special characters",
+      };
 
     } else {
-      if (containsChinese(input)) {
-        if (input.length > 1) {
-          new_error = { charTooLong: "Char search must be only one character" };
+      if (searchType === "searchStory") {
+        if (input.length > 40) {
+          new_error = {
+            storyTooLong: "Story search must be 40 characters or less",
+          };
         } else {
           isValid = true;
-          target_type = "char";
+          target_type = "story";
         }
-      }
-      // check if it's a number
-      else if (!isNaN(input)) {
-        if (deck_param === "kanjis") {
-          if (input > 3030) {
-            new_error = { tooHigh: "Max number is 3030" };
-          } else if (input < 1) {
-            new_error = { tooLow: "Min number is 1" };
-          } else {
-            isValid = true;
-            target_type = "num";
-          }
-        } else if (deck_param === "hanzis") {
-          if (input > 3035) {
-            new_error = { tooHigh: "Max number is 3035" };
-          } else if (input < 1) {
-            new_error = { tooLow: "Min number is 1" };
-          } else {
-            isValid = true;
-            target_type = "num";
-          }
-        }
-      }
-      // check if it's an english letter
-      else if (input.match(/[a-z]/i)) {
-        isValid = true;
-        target_type = "meaning";
       } else {
-        new_error = { invalidInput: "Invalid input" };
+        if (containsChinese(input)) {
+          if (input.length > 1) {
+            new_error = {
+              charTooLong: "Char search must be only one character",
+            };
+          } else {
+            isValid = true;
+            target_type = "char";
+          }
+        }
+        // check if it's a number
+        else if (!isNaN(input)) {
+          if (deck_param === "kanjis") {
+            if (input > 3030) {
+              new_error = { tooHigh: "Max number is 3030" };
+            } else if (input < 1) {
+              new_error = { tooLow: "Min number is 1" };
+            } else {
+              isValid = true;
+              target_type = "num";
+            }
+          } else if (deck_param === "hanzis") {
+            if (input > 3035) {
+              new_error = { tooHigh: "Max number is 3035" };
+            } else if (input < 1) {
+              new_error = { tooLow: "Min number is 1" };
+            } else {
+              isValid = true;
+              target_type = "num";
+            }
+          }
+        }
+        // check if it's an english letter
+        else if (input.match(/[a-z]/i)) {
+          isValid = true;
+          target_type = "meaning";
+        } else {
+          new_error = { invalidInput: "Invalid input" };
+        }
       }
     }
     if (isValid) {
