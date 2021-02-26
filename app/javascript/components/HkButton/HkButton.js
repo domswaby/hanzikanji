@@ -35,7 +35,7 @@ const Wrapper = styled.div`
     height: 100%;
     margin: 0 auto;
     width: 30%;
-    font-size: 3em;
+    font-size: 2em;
     display: flex;
     text-align: center;
     align-items: center;

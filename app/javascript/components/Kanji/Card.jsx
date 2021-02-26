@@ -45,11 +45,10 @@ const PageNumber = styled.div`
   }
 `;
 const CardKanji = styled.div`
-  font-size: 5em;
+  font-size: 10em;
   display: flex;
   justify-content: center;
-
-  margin: 1.5em 0 0.5em 0;
+  margin: 0.5em 0 0 0;
 
 `;
 const CardMeaning = styled.div`

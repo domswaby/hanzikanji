@@ -104,7 +104,7 @@ const Search = (props) => {
           />
         </InnerInputWrap>
         <button onClick={searchRequest}>
-          Search <BsIcons.BsSearch />
+          <BsIcons.BsSearch />
         </button>
       </OuterInputWrap>
       {Object.keys(props.searchErr).map((key) => {
