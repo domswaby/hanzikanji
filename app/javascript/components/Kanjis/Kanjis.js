@@ -21,15 +21,19 @@ const TableContainer = styled.div`
 const Kanjis = (props) => {
   const { page_param } = useParams();
   const { deck_param } = useParams();
-  let kanjisPerPage = 50;
+
   let deck_length = 0;
+  let heisig_deck_length = 0;
   if (deck_param === "hanzis") {
     deck_length = 4143;
+    heisig_deck_length = 3035;
   } else {
     deck_length = 3030;
+    heisig_deck_length = 3030;
   }
 
-  let totalPages = deck_length / kanjisPerPage;
+  const chars_per_page = 50;
+  const number_of_pages = Math.round(heisig_deck_length / chars_per_page);
 
   let first_kanji_number = page_param * 50 - 49;
   let last_kanji_number = page_param * 50;
@@ -202,7 +206,7 @@ const Kanjis = (props) => {
       />
       <div className="slidecontainer">
         <p>
-          Page: <span>#{page}</span>
+          Page: <span>#{`${page} of ${number_of_pages}`}</span>
         </p>
         <input
           type="range"

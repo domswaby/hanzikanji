@@ -30,6 +30,9 @@ module Api
                    Hanzi.where(number: target.to_i).order(:number)
                  elsif target_type == 'char'
                    Hanzi.where(char: target).order(:number)
+                 elsif target_type == 'story'
+                   Hanzi.where("story like ?", "%#{target}%").limit(500).order(:number)
+                   
                  else
                    Hanzi.where(meaning: target).order(:number)
                  end
