@@ -30,6 +30,9 @@ module Api
                    Kanji.where(number: target.to_i).order(:number)
                  elsif target_type == 'char'
                    Kanji.where(char: target).order(:number)
+                 elsif target_type == 'story'
+                   Kanji.where("story like ?", "%#{target}%").limit(500).order(:number)
+                   #Topic.where("name like ?", "%#{@search}%")
                  else
                    Kanji.where(meaning: target).order(:number)
                  end

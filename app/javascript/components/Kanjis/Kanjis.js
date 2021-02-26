@@ -5,14 +5,13 @@ import axios from "axios";
 import styled from "styled-components";
 import SimpleBackdrop from "../SimpleBackdrop/SimpleBackdrop";
 import Footer from "../../pages/Footer";
-import HkButton from "../HkButton/HkButton"
+import HkButton from "../HkButton/HkButton";
 import containsChinese from "contains-chinese";
 import "../../../assets/stylesheets/Slider.css";
 import { useParams } from "react-router-dom";
 import * as localForage from "localforage";
 
-const Home = styled.div`
-`;
+const Home = styled.div``;
 
 const TableContainer = styled.div`
   margin-bottom: 2em;
@@ -37,10 +36,11 @@ const Kanjis = (props) => {
 
   const [kanjis, setKanjis] = useState([]);
   const [search, setSearch] = useState("");
+  const [searchStory, setSearchStory] = useState("");
+  const [searchErr, setSearchErr] = useState({});
   const [page, setPage] = useState(page_param);
   const [deck, setDeck] = useState(deck_param);
   const [loaded, setLoaded] = useState(false);
-  const [searchErr, setSearchErr] = useState({});
 
   useEffect(() => {
     // Get all of our kanjis from api
@@ -109,48 +109,59 @@ const Kanjis = (props) => {
     getKanjis();
   };
 
-  const doSearch = (input) => {
+  const doSearch = (input, searchType) => {
     let target_type;
     let isValid = false;
     let new_error = {};
     input = input.trim();
     // check if it's chinese or japanese
-    if (containsChinese(input)) {
-      if (input.length > 1) {
-        new_error = { charTooLong: "Char search must be only one character" };
-      } else {
+    if (searchType === "searchStory") {
+      if(input.length > 40){
+        new_error = { storyTooLong: "Story search must be 40 characters or less"}
+      }
+      else{
         isValid = true;
-        target_type = "char";
+        target_type = "story";
       }
-    }
-    // check if it's a number
-    else if (!isNaN(input)) {
-      if (deck_param === "kanjis") {
-        if (input > 3030) {
-          new_error = { tooHigh: "Max number is 3030" };
-        } else if (input < 1) {
-          new_error = { tooLow: "Min number is 1" };
-        } else {
-          isValid = true;
-          target_type = "num";
-        }
-      } else if (deck_param === "hanzis") {
-        if (input > 3035) {
-          new_error = { tooHigh: "Max number is 3035" };
-        } else if (input < 1) {
-          new_error = { tooLow: "Min number is 1" };
-        } else {
-          isValid = true;
-          target_type = "num";
-        }
-      }
-    }
-    // check if it's an english letter
-    else if (input.match(/[a-z]/i)) {
-      isValid = true;
-      target_type = "meaning";
+
     } else {
-      new_error = { invalidInput: "Invalid input" };
+      if (containsChinese(input)) {
+        if (input.length > 1) {
+          new_error = { charTooLong: "Char search must be only one character" };
+        } else {
+          isValid = true;
+          target_type = "char";
+        }
+      }
+      // check if it's a number
+      else if (!isNaN(input)) {
+        if (deck_param === "kanjis") {
+          if (input > 3030) {
+            new_error = { tooHigh: "Max number is 3030" };
+          } else if (input < 1) {
+            new_error = { tooLow: "Min number is 1" };
+          } else {
+            isValid = true;
+            target_type = "num";
+          }
+        } else if (deck_param === "hanzis") {
+          if (input > 3035) {
+            new_error = { tooHigh: "Max number is 3035" };
+          } else if (input < 1) {
+            new_error = { tooLow: "Min number is 1" };
+          } else {
+            isValid = true;
+            target_type = "num";
+          }
+        }
+      }
+      // check if it's an english letter
+      else if (input.match(/[a-z]/i)) {
+        isValid = true;
+        target_type = "meaning";
+      } else {
+        new_error = { invalidInput: "Invalid input" };
+      }
     }
     if (isValid) {
       setLoaded(false);
@@ -169,10 +180,12 @@ const Kanjis = (props) => {
 
   return (
     <Home>
-              <HkButton deck={deck}/>
+      <HkButton deck={deck} />
       <Search
         search={search}
         setSearch={setSearch}
+        searchStory={searchStory}
+        setSearchStory={setSearchStory}
         doSearch={doSearch}
         searchErr={searchErr}
         setSearchErr={setSearchErr}

@@ -64,11 +64,25 @@ const InnerInputWrap = styled.div`
 
 const Search = (props) => {
   const searchRequest = () => {
-    props.doSearch(props.search);
+    if(props.search === ""){
+      if(props.searchStory === ""){
+        return;
+      }else{
+        props.doSearch(props.searchStory, "searchStory");
+      }
+    }
+    else{
+      props.doSearch(props.search, "otherSearch");
+    }
   };
   const updateSearch = (e) => {
     props.setSearch(e.target.value);
+    props.setSearchStory("");
   };
+  const updateSearchStory = (e) => {
+    props.setSearchStory(e.target.value);
+    props.setSearch("");
+  }
 
   return (
     <SearchWrap>
@@ -76,15 +90,13 @@ const Search = (props) => {
         <InnerInputWrap>
           <input
             type="text"
-            id="searcher"
             placeholder="Char / Meaning / #"
             onChange={updateSearch}
           />
           <input
             type="text"
-            id="searcher"
             placeholder="Story (words)"
-
+            onChange={updateSearchStory}
           />
         </InnerInputWrap>
         <button onClick={searchRequest}>
