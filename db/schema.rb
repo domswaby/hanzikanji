@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
   create_table "hanzi_parts", force: :cascade do |t|
     t.bigint "hanzi_id", null: false
     t.bigint "part_id", null: false
@@ -59,10 +58,8 @@ ActiveRecord::Schema.define(version: 2020_09_28_114315) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-
   add_foreign_key "hanzi_parts", "hanzis"
   add_foreign_key "hanzi_parts", "parts"
   add_foreign_key "kanji_parts", "kanjis"
   add_foreign_key "kanji_parts", "parts"
-
 end

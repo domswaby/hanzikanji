@@ -55,8 +55,8 @@ const TwitterWrapper = styled.div`
   }
   .donate_btc_qr{
     background: url(${donate_btc_img}) !important;
-    height: 125px;
-    width: 125px;
+    height: 200px;
+    width: 200px;
     margin: 0 0 0.5em 0;
   }
   div {
@@ -135,7 +135,7 @@ const CopySuccess = styled.div`
 
 
 const Donate = () => {
-  const p_address = "1K3G2Cr7rbMmRm4jZNzdHcfTL1x1kGL69W";
+  const p_address = "3AaPhE7pWKcYrgrogr7qxHu2Xy3ZhR4WLG";
   const [showCopy, setShowCopy] = useState(false);
 
   const copyToClipboard = () => {
@@ -155,7 +155,7 @@ const Donate = () => {
           <h2>Bitcoin</h2>
             <FaBitcoin />
           </div>
-          <div className="donate_btc_qr"></div>
+    {/*      <div className="donate_btc_qr"></div> */}
           <p className="btc_alpha_num">
             <span>{p_address}</span> <button className="copy_icon"><AiOutlineCopy  onClick={copyToClipboard}/></button>
           </p>
