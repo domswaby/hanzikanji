@@ -148,7 +148,7 @@ const Donate = () => {
     <div>
       <HkButton />
       <Wrapper>
-        <CommentWrapper><p>Any donations no matter the size are very much appreciated.  If you would like to donate please send <b>only</b> bitcoin to the below address.</p></CommentWrapper>
+        <CommentWrapper><p>Any donations are deeply appreciated.  If you would like to donate please send <b>only</b> bitcoin to the below address.</p></CommentWrapper>
         <CopySuccess className={showCopy? "showSuccess" : "hideSuccess"}><p>Copied address to clipboard</p></CopySuccess>
         <TwitterWrapper href="https://twitter.com/HanziKanjiCards" target="_blank">
           <div>
