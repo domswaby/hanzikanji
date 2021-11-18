@@ -9,15 +9,15 @@ const Datatable = ({ data, deck }) => {
   return (
     <table cellPadding={0} cellSpacing={0}>
       <thead>
-        <tr>
+        <tr key="heading">
           {data[0] &&
             columns.map((heading) => {
-              console.log(heading);
+
               if (heading !== "parts") {
                 if(heading === "number"){
-                  return <th>#</th>;
+                  return <th key={heading}>#</th>;
                 }
-                return <th>{heading}</th>;
+                return <th key={heading}>{heading}</th>;
               }
             })}
         </tr>
@@ -25,20 +25,19 @@ const Datatable = ({ data, deck }) => {
 
       <tbody>
         {data.map((row, card_index) => (
-          <tr>
-            {" "}
+          <tr key={data[card_index].char}>
             {columns.map((column) => {
               if (column !== "parts") {
                 if (column === "story") {
                   return (
-                    <td>
+                    <td key={column}>
                       <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{parse(row[column])}</Link>
                     </td>
                   );
 
                 } else if (column === "number"){
                   return (
-                    <td>
+                    <td key={column}>
                       <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{row[column]}</Link>
                     </td>
                   );
@@ -46,7 +45,7 @@ const Datatable = ({ data, deck }) => {
                 }
                 else {
                   return (
-                    <td>
+                    <td key={column}>
                       <Link to={`/cards/${deck}/${data[0].number + card_index}`}>{row[column]}</Link>
                     </td>
                   );

@@ -216,7 +216,7 @@ const Kanjis = (props) => {
           onMouseUp={goNewPage}
           onTouchEnd={goNewPage}
           defaultValue={page}
-          value={page}
+          
           className="slider"
           id="myRange"
         />

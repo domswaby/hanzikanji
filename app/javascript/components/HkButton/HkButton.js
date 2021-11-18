@@ -46,7 +46,7 @@ const Wrapper = styled.div`
 const HkButton = (props) => {
 
   const checkHanziDeck = () => {
-    console.log(props.deck);
+    
     if(props.deck === "hanzis"){
       return "activeDeck"
     }
