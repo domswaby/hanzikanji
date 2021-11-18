@@ -15,20 +15,24 @@ const SearchWrap = styled.div`
 
 `;
 const OuterInputWrap = styled.div`
-  width: 65%;
+  width: 75%;
   margin: 0 auto;
   padding: 1em 0;
   display: flex;
-  justify-content: space-around;
+
+  align-items: stretch;
+  input:first-child{
+    margin-bottom: 0.2em;
+  }
   input {
     display: block;
     width: 100%;
-    margin-bottom: 0.3em;
+    border-radius: 5%;
     padding: 0.5em;
     font-size: 1.2em;
-    border: 4px solid var(--light-gray);
+    border: 2px solid var(--light-gray);
     &:hover {
-      border: 4px solid var(--lighter-gray);
+        border: 4px solid var(--dark-gray);
     }
     &:focus {
       border: 4px solid var(--dark-gray);
@@ -58,9 +62,25 @@ const OuterInputWrap = styled.div`
       width: 80%;
   }
 `;
+const LastStudiedChar = styled.div`
+  width: 20%;
+  align-self: stretch;
+
+  button{
+    width: 100%;
+    height: 100%;
+  }
+`;
 const InnerInputWrap = styled.div`
   width: 50%;
+  margin: 0 0.2em;
+
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  flex-direction: column;
 `;
+
 
 const Search = (props) => {
   const searchRequest = () => {
@@ -89,6 +109,9 @@ const Search = (props) => {
   return (
     <SearchWrap>
       <OuterInputWrap>
+        <LastStudiedChar>
+          <button>Test</button>
+        </LastStudiedChar>
         <InnerInputWrap>
           <input
             id="multiInput"
