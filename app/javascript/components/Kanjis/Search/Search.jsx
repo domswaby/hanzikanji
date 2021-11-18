@@ -19,7 +19,7 @@ const OuterInputWrap = styled.div`
   margin: 0 auto;
   padding: 1em 0;
   display: flex;
-
+  justify-content: center;
   align-items: stretch;
   input:first-child{
     margin-bottom: 0.2em;
@@ -30,7 +30,7 @@ const OuterInputWrap = styled.div`
     border-radius: 5%;
     padding: 0.5em;
     font-size: 1.2em;
-    border: 2px solid var(--light-gray);
+    border: 4px solid var(--light-gray);
     &:hover {
         border: 4px solid var(--dark-gray);
     }
@@ -47,7 +47,7 @@ const OuterInputWrap = styled.div`
     padding: 0.5em;
     font-size: 1.2em;
     border: 10px solid var(--light-gray);
-    width: 30%;
+    width: 25%;
     border-radius: 10%;
     &:hover {
       cursor: pointer;
@@ -59,11 +59,11 @@ const OuterInputWrap = styled.div`
     }
   }
   @media only screen and (max-width: 600px) {
-      width: 80%;
+      width: 100%;
   }
 `;
 const LastStudiedChar = styled.div`
-  width: 20%;
+  width: 25%;
   align-self: stretch;
 
   button{
@@ -72,13 +72,16 @@ const LastStudiedChar = styled.div`
   }
 `;
 const InnerInputWrap = styled.div`
-  width: 50%;
+  width: 35%;
   margin: 0 0.2em;
 
   display: flex;
   align-items: space-between;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-direction: column;
+  @media only screen and (max-width: 600px) {
+      width: 47%;
+  }
 `;
 
 
@@ -110,7 +113,7 @@ const Search = (props) => {
     <SearchWrap>
       <OuterInputWrap>
         <LastStudiedChar>
-          <button>Test</button>
+          <button>Last<br />Studied<br />湖</button>
         </LastStudiedChar>
         <InnerInputWrap>
           <input
