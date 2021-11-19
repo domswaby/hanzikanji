@@ -45,6 +45,7 @@ const Kanjis = (props) => {
   const [page, setPage] = useState(page_param);
   const [deck, setDeck] = useState(deck_param);
   const [loaded, setLoaded] = useState(false);
+  const [lastStudied, setLastStudied] = useState({});
 
   useEffect(() => {
     // Get all of our kanjis from api
@@ -52,24 +53,53 @@ const Kanjis = (props) => {
     setLoaded(false);
     setDeck(deck_param);
     let item = deck_param + page;
+    let lastStudiedForage = "last_" + deck_param;
+    //first get kanjis data from localForage else get it from server
     localForage
       .getItem(item)
       .then((response) => {
         if (!response) {
-          axios
+          return axios
             .get(`/api/v1/${deck_param}/page/${page}.json`)
             .then((resp) => {
               return localForage.setItem(item, resp.data.data);
             })
             .then((resp) => {
               setKanjis(resp);
-              setLoaded(true);
+              console.log("got data from server " + resp);
+              return resp;
             })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
-          setLoaded(true);
+          console.log("got data from localForage - " + response[0].attributes.char);
+          return response;
         }
+      })
+      // then get last studied character from localForage else set it to the first item in the kanjis data array
+      .then((kanjis_response) => {
+            console.log("kanjis_response[0] = " + kanjis_response[0].attributes.char);
+        return localForage.getItem(lastStudiedForage)
+        .then((response) => {
+          if(!response){
+            return localForage.setItem(lastStudiedForage, kanjis_response[0].attributes)
+            .then((value) => {
+              setLastStudied(value);
+              console.log("value = " + value.char);
+              return value;
+            });
+          }
+          else{
+            console.log("response after get item = " + response.char);
+            setLastStudied(response);
+            console.log("response = " + response.attributes);
+            return response;
+          }
+        })
+      })
+      .then((response) => {
+        console.log("lastStudied = " + lastStudied.char)
+        setLoaded(true);
       })
       .catch((resp) => console.log(resp));
   }, [deck_param]);
@@ -104,6 +134,7 @@ const Kanjis = (props) => {
   const data = kanjis.map((item) => {
     return item.attributes;
   });
+
   const moveSlider = (e) => {
     let selector = document.getElementById("selector");
     setPage(e.target.value);
@@ -203,6 +234,7 @@ const Kanjis = (props) => {
         doSearch={doSearch}
         searchErr={searchErr}
         setSearchErr={setSearchErr}
+        lastStudied={lastStudied}
       />
       <div className="slidecontainer">
         <p>
@@ -216,7 +248,7 @@ const Kanjis = (props) => {
           onMouseUp={goNewPage}
           onTouchEnd={goNewPage}
           defaultValue={page}
-          
+
           className="slider"
           id="myRange"
         />

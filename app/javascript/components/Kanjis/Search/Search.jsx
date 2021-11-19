@@ -113,7 +113,7 @@ const Search = (props) => {
     <SearchWrap>
       <OuterInputWrap>
         <LastStudiedChar>
-          <button>Last<br />Studied<br />湖</button>
+          <button>Last<br />Studied<br />{props.lastStudied.char}</button>
         </LastStudiedChar>
         <InnerInputWrap>
           <input
