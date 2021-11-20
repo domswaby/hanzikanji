@@ -90,18 +90,24 @@ const Kanji = (props) => {
       .catch((resp) => console.log(resp));
   }, [deck]);
 
-  useEffect(() => {
-     document.addEventListener("keydown", handleKeyPress, false);
-
-     return () => {
-       document.removeEventListener("keydown", handleKeyPress, false);
-     };
-   }, []);
-  // find index of character received from params in kanjis
-
-  const saveToForage = (item, data) => {
-    return localForage.setItem(item, data);
-  };
+  // useEffect(() => {
+  //   const unblock = history.block((location, action) => {
+  //     return localForage.setItem(item, data[index])
+  //     .then(() => {
+  //       console.log("Did I fire at the right time?");
+  //       return true;
+  //
+  //     });
+  //   });
+  // 
+  //   return () => {
+  //     unblock();
+  //   };
+  // }, []);
+//stuff
+  // const saveToForage = (item, data) => {
+  //   return localForage.setItem(item, data[index]);
+  // };
 
   const getIndex = (input) => {
     const data_for_get_index = input.map((item) => {

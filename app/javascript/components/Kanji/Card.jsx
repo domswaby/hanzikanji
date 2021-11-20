@@ -128,7 +128,7 @@ const Card = (props) => {
   const index = props.index;
   const parts = props.data[index].parts.map( item => {
     return (
-      <div>{item.part} - {item.meaning}</div>
+      <div key={item.part}>{item.part} - {item.meaning}</div>
     )
   });
 
