@@ -63,29 +63,32 @@ const Kanji = (props) => {
     // Update kanjis in state
     setLoaded(false);
     let item = deck + page;
+    console.log(item);
 
     localForage
       .getItem(item)
       .then((response) => {
 
         if (!response) {
-          axios
+          console.log("about to make a call");
+          return axios
             .get(`/api/v1/${deck}/page/${page}.json`)
             .then((resp) => {
+              console.log(resp.data.data);
               return saveToForage(item, resp.data.data);
             })
             .then((resp) => {
               setKanjis(resp);
               getIndex(resp);
-              setLoaded(true);
             })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
           getIndex(response);
-          setLoaded(true);
-
+          return true;
         }
+      }).then((value) => {
+          setLoaded(true);
       })
       .catch((resp) => console.log(resp));
   }, [deck]);
@@ -99,15 +102,15 @@ const Kanji = (props) => {
   //
   //     });
   //   });
-  // 
+  //
   //   return () => {
   //     unblock();
   //   };
   // }, []);
 //stuff
-  // const saveToForage = (item, data) => {
-  //   return localForage.setItem(item, data[index]);
-  // };
+  const saveToForage = (item, data) => {
+    return localForage.setItem(item, data);
+  };
 
   const getIndex = (input) => {
     const data_for_get_index = input.map((item) => {
