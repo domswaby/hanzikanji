@@ -50,6 +50,7 @@ const Kanji = (props) => {
   let first_kanji_number = pageNumber * 50 - 49;
   let last_kanji_number = pageNumber * 50;
   let char_index = num - first_kanji_number;
+  let lastStudiedForage = "last_" + deck;
 
   const [loaded, setLoaded] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -93,21 +94,8 @@ const Kanji = (props) => {
       .catch((resp) => console.log(resp));
   }, [deck]);
 
-  // useEffect(() => {
-  //   const unblock = history.block((location, action) => {
-  //     return localForage.setItem(item, data[index])
-  //     .then(() => {
-  //       console.log("Did I fire at the right time?");
-  //       return true;
-  //
-  //     });
-  //   });
-  //
-  //   return () => {
-  //     unblock();
-  //   };
-  // }, []);
-//stuff
+
+
   const saveToForage = (item, data) => {
     return localForage.setItem(item, data);
   };
@@ -132,25 +120,27 @@ const Kanji = (props) => {
   const getKanjis = (direction, new_page) => {
     setLoaded(false);
     let item = deck + new_page;
-    localForage
+    return localForage
       .getItem(item)
       .then((response) => {
         if (!response) {
-          axios
+          return axios
             .get(`/api/v1/${deck}/page/${new_page}.json`)
             .then((resp) => {
               return saveToForage(item, resp.data.data);
             })
             .then((resp) => {
               if (direction === "up") {
-
                 setKanjis(resp);
                 setIndex(0);
                 setPage((old_page) => old_page + 1);
+                window.localStorage.setItem(lastStudiedForage, resp[0].attributes.char);
+
               } else {
                 setKanjis(resp);
                 setIndex(resp.length - 1);
                 setPage((old_page) => old_page - 1);
+                window.localStorage.setItem(lastStudiedForage, resp[resp.length - 1].attributes.char);
               }
               setLoaded(true);
             })
@@ -160,14 +150,16 @@ const Kanji = (props) => {
             setKanjis(response);
             setIndex(0);
             setPage((old_page) => old_page + 1);
-            setLoaded(true);
+            window.localStorage.setItem(lastStudiedForage, response[0].attributes.char);
           }
           else{
             setKanjis(response);
             setIndex(response.length - 1);
             setPage((old_page) => old_page - 1);
-            setLoaded(true);
+            window.localStorage.setItem(lastStudiedForage, response[response.length - 1].attributes.char);
+
           }
+          setLoaded(true);
         }
       })
       .catch((resp) => console.log(resp));
@@ -189,6 +181,7 @@ const Kanji = (props) => {
       } else {
         let new_index = index + 1;
         setIndex(new_index);
+        window.localStorage.setItem(lastStudiedForage, data[new_index].char);
       }
     } else {
       if (data[index].number === 3035) {
@@ -198,6 +191,7 @@ const Kanji = (props) => {
       } else {
         let new_index = index + 1;
         setIndex(new_index);
+        window.localStorage.setItem(lastStudiedForage, data[new_index].char);
       }
     }
   };
@@ -208,7 +202,9 @@ const Kanji = (props) => {
       let new_page = page - 1;
       getKanjis("down", new_page);
     } else {
+      window.localStorage.setItem(lastStudiedForage, data[index-1].char);
       setIndex((old_index) => old_index - 1);
+
     }
   };
 
