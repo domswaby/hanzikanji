@@ -51,6 +51,7 @@ const Kanji = (props) => {
   let last_kanji_number = pageNumber * 50;
   let char_index = num - first_kanji_number;
   let lastStudiedForage = "last_" + deck;
+  const localStorage = window.localStorage;
 
   const [loaded, setLoaded] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -94,8 +95,6 @@ const Kanji = (props) => {
       .catch((resp) => console.log(resp));
   }, [deck]);
 
-
-
   const saveToForage = (item, data) => {
     return localForage.setItem(item, data);
   };
@@ -134,13 +133,13 @@ const Kanji = (props) => {
                 setKanjis(resp);
                 setIndex(0);
                 setPage((old_page) => old_page + 1);
-                window.localStorage.setItem(lastStudiedForage, resp[0].attributes.char);
+                localStorage.setItem(lastStudiedForage, JSON.stringify(resp[0].attributes));
 
               } else {
                 setKanjis(resp);
                 setIndex(resp.length - 1);
                 setPage((old_page) => old_page - 1);
-                window.localStorage.setItem(lastStudiedForage, resp[resp.length - 1].attributes.char);
+                localStorage.setItem(lastStudiedForage, JSON.stringify(resp[resp.length - 1].attributes));
               }
               setLoaded(true);
             })
@@ -150,13 +149,13 @@ const Kanji = (props) => {
             setKanjis(response);
             setIndex(0);
             setPage((old_page) => old_page + 1);
-            window.localStorage.setItem(lastStudiedForage, response[0].attributes.char);
+            localStorage.setItem(lastStudiedForage, JSON.stringify(response[0].attributes));
           }
           else{
             setKanjis(response);
             setIndex(response.length - 1);
             setPage((old_page) => old_page - 1);
-            window.localStorage.setItem(lastStudiedForage, response[response.length - 1].attributes.char);
+            localStorage.setItem(lastStudiedForage, JSON.stringify(response[response.length - 1].attributes));
 
           }
           setLoaded(true);
@@ -181,7 +180,7 @@ const Kanji = (props) => {
       } else {
         let new_index = index + 1;
         setIndex(new_index);
-        window.localStorage.setItem(lastStudiedForage, data[new_index].char);
+        localStorage.setItem(lastStudiedForage, JSON.stringify(data[new_index]));
       }
     } else {
       if (data[index].number === 3035) {
@@ -191,7 +190,7 @@ const Kanji = (props) => {
       } else {
         let new_index = index + 1;
         setIndex(new_index);
-        window.localStorage.setItem(lastStudiedForage, data[new_index].char);
+        localStorage.setItem(lastStudiedForage, JSON.stringify(data[new_index]));
       }
     }
   };
@@ -202,7 +201,7 @@ const Kanji = (props) => {
       let new_page = page - 1;
       getKanjis("down", new_page);
     } else {
-      window.localStorage.setItem(lastStudiedForage, data[index-1].char);
+      localStorage.setItem(lastStudiedForage, JSON.stringify(data[index-1]));
       setIndex((old_index) => old_index - 1);
 
     }

@@ -34,6 +34,7 @@ const Kanjis = (props) => {
 
   const chars_per_page = 50;
   const number_of_pages = Math.round(heisig_deck_length / chars_per_page);
+  const localStorage = window.localStorage;
 
   let first_kanji_number = page_param * 50 - 49;
   let last_kanji_number = page_param * 50;
@@ -56,52 +57,47 @@ const Kanjis = (props) => {
     let lastStudiedForage = "last_" + deck_param;
     //first get kanjis data from localForage else get it from server
     localForage
-      .getItem(item)
-      .then((response) => {
-        if (!response) {
-          return axios
-            .get(`/api/v1/${deck_param}/page/${page}.json`)
-            .then((resp) => {
-              return localForage.setItem(item, resp.data.data);
-            })
-            .then((resp) => {
-              setKanjis(resp);
-              console.log("got data from server " + resp);
-              return resp;
-            })
-            .catch((resp) => console.log(resp));
-        } else {
-          setKanjis(response);
-          console.log("got data from localForage - " + response[0].attributes.char);
-          return response;
-        }
-      })
-      // then get last studied character from localForage else set it to the first item in the kanjis data array
-      .then((kanjis_response) => {
-            console.log("kanjis_response[0] = " + kanjis_response[0].attributes.char);
-        return localForage.getItem(lastStudiedForage)
-        .then((response) => {
-          if(!response){
-            return localForage.setItem(lastStudiedForage, kanjis_response[0].attributes)
-            .then((value) => {
-              setLastStudied(value);
-              console.log("value = " + value.char);
-              return value;
-            });
-          }
-          else{
-            console.log("response after get item = " + response.char);
-            setLastStudied(response);
-            console.log("response = " + response.attributes);
-            return response;
-          }
-        })
-      })
-      .then((response) => {
-        console.log("lastStudied = " + lastStudied.char)
-        setLoaded(true);
-      })
-      .catch((resp) => console.log(resp));
+    .getItem(item)
+    .then((response) => {
+      if (!response) {
+        return axios
+          .get(`/api/v1/${deck_param}/page/${page}.json`)
+          .then((resp) => {
+            return localForage.setItem(item, resp.data.data);
+          })
+          .then((resp) => {
+            setKanjis(resp);
+            console.log("got data from server " + resp);
+            return resp;
+          })
+          .catch((resp) => console.log(resp));
+      } else {
+        setKanjis(response);
+        console.log("got data from localForage - " + response[0].attributes.char);
+        return response;
+      }
+    })
+    // then get last studied character from localForage else set it to the first item in the kanjis data array
+    .then((kanjis_response) => {
+      console.log("kanjis_response[0] = " + kanjis_response[0].attributes.char);
+      console.log("lastStudiedForage = " + lastStudiedForage);
+      console.log("lastStudiedForage in localStorage = " + JSON.parse(localStorage.getItem(lastStudiedForage)));
+      let lastStudiedItem = JSON.parse(localStorage.getItem(lastStudiedForage));
+      console.log("lastStudiedItem = " + lastStudiedItem);
+      if (!lastStudiedItem) {
+        localStorage.setItem(lastStudiedForage, kanjis_response[0].attributes);
+        setLastStudied(kanjis_response[0].attributes);
+      } else {
+        console.log("lastStudiedItem = " + lastStudiedItem);
+        return setLastStudied(lastStudiedItem);
+      }
+
+    })
+    .then((response) => {
+      console.log("lastStudied = " + lastStudied.char)
+      setLoaded(true);
+    })
+    .catch((resp) => console.log(resp));
   }, [deck_param]);
 
   const getKanjis = () => {
