@@ -87,9 +87,15 @@ const Kanji = (props) => {
         } else {
           setKanjis(response);
           getIndex(response);
-          return true;
+          return response;
         }
-      }).then((value) => {
+      })
+      .then((kanjis_response) => {
+        let lastStudiedItem = JSON.stringify(kanjis_response[char_index].attributes);
+        localStorage.setItem(lastStudiedForage, lastStudiedItem);
+
+      })
+      .then((value) => {
           setLoaded(true);
       })
       .catch((resp) => console.log(resp));

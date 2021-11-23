@@ -79,23 +79,16 @@ const Kanjis = (props) => {
     })
     // then get last studied character from localForage else set it to the first item in the kanjis data array
     .then((kanjis_response) => {
-      console.log("kanjis_response[0] = " + kanjis_response[0].attributes.char);
-      console.log("lastStudiedForage = " + lastStudiedForage);
-      console.log("lastStudiedForage in localStorage = " + JSON.parse(localStorage.getItem(lastStudiedForage)));
       let lastStudiedItem = JSON.parse(localStorage.getItem(lastStudiedForage));
-      console.log("lastStudiedItem = " + lastStudiedItem);
       if (!lastStudiedItem) {
         localStorage.setItem(lastStudiedForage, kanjis_response[0].attributes);
         setLastStudied(kanjis_response[0].attributes);
       } else {
-        console.log("lastStudiedItem = " + lastStudiedItem);
         return setLastStudied(lastStudiedItem);
       }
-
     })
     .then((response) => {
-      console.log("lastStudied = " + lastStudied.char)
-      setLoaded(true);
+        setLoaded(true);
     })
     .catch((resp) => console.log(resp));
   }, [deck_param]);
