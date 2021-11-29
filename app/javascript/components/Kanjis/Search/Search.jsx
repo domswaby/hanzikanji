@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
 
+
 const SearchWrap = styled.div`
   width: 100%;
   background-color: var(--lighter-gray);
