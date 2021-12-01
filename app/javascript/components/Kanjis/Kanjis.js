@@ -36,6 +36,8 @@ const Kanjis = (props) => {
   const number_of_pages = Math.round(heisig_deck_length / chars_per_page);
   const localStorage = window.localStorage;
 
+
+
   let first_kanji_number = page_param * 50 - 49;
   let last_kanji_number = page_param * 50;
 

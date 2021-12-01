@@ -88,6 +88,7 @@ const InnerInputWrap = styled.div`
 
 
 const Search = (props) => {
+
   const searchRequest = () => {
     if(props.search === ""){
       if(props.searchStory === ""){
@@ -110,17 +111,22 @@ const Search = (props) => {
     props.setSearch("");
     document.getElementById("multiInput").value = "";
   }
-  const getLastStudiedIndex = (hk_num) => {
 
+  const lastStudiedIndex = "last_" + props.deck + "_index";
+
+  const getLastStudiedIndex = (hk_num) => {
+    console.log("LastStudiedIndex = " + window.localStorage.getItem(lastStudiedIndex));
+    return window.localStorage.getItem(lastStudiedIndex);
 
   }
+
 
   return (
     <SearchWrap>
       <OuterInputWrap>
         <LastStudiedChar>
 
-          <button>Last<br />Studied<br /><Link to={`/cards/${props.deck}/${props.lastStudied.number}`}>{props.lastStudied.char}</Link></button>
+          <button><Link to={`/cards/${props.deck}/${getLastStudiedIndex()}`}>Last<br />Studied<br />{props.lastStudied.char} #{props.lastStudied.number}</Link></button>
         </LastStudiedChar>
         <InnerInputWrap>
           <input
