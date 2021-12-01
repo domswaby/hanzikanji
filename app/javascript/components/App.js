@@ -17,7 +17,7 @@ const CangJie = styled.div`
   background: url(${cangJie_img});
   background-repeat: no-repeat;
   top: 0;
-  right: 10px;
+  right: 0px;
   height: 80px;
   width: 87px;
 `;
