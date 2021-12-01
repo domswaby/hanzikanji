@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
+import {Link} from "react-router-dom";
 
 
 const SearchWrap = styled.div`
@@ -109,12 +110,17 @@ const Search = (props) => {
     props.setSearch("");
     document.getElementById("multiInput").value = "";
   }
+  const getLastStudiedIndex = (hk_num) => {
+
+
+  }
 
   return (
     <SearchWrap>
       <OuterInputWrap>
         <LastStudiedChar>
-          <button>Last<br />Studied<br />{props.lastStudied.char}</button>
+
+          <button>Last<br />Studied<br /><Link to={`/cards/${props.deck}/${props.lastStudied.number}`}>{props.lastStudied.char}</Link></button>
         </LastStudiedChar>
         <InnerInputWrap>
           <input

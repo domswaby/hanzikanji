@@ -80,7 +80,6 @@ const Kanjis = (props) => {
     // then get last studied character from localForage else set it to the first item in the kanjis data array
     .then((kanjis_response) => {
       let lastStudiedItem = JSON.parse(localStorage.getItem(lastStudiedForage));
-      
       if (!lastStudiedItem) {
         localStorage.setItem(lastStudiedForage, JSON.stringify(kanjis_response[0].attributes));
         setLastStudied(kanjis_response[0].attributes);
@@ -225,6 +224,7 @@ const Kanjis = (props) => {
         searchErr={searchErr}
         setSearchErr={setSearchErr}
         lastStudied={lastStudied}
+        deck={deck}
       />
       <div className="slidecontainer">
         <p>

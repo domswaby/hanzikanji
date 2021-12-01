@@ -39,25 +39,27 @@ const Controls = styled.div`
 `;
 
 const Kanji = (props) => {
+  const localStorage = window.localStorage;
   const { num } = useParams();
   const { deck } = useParams();
-  //const num = props.match.params.num;
-  //const deck = props.match.params.deck;
+
+
   // *** calculate the right pageNumber for this kanji, and the first and last kanji on that page ***
   let kanjisPerPage = 50;
-  let pageNumber = Math.ceil(num / kanjisPerPage);
   let totalPages = 3030 / kanjisPerPage;
+  let pageNumber = Math.ceil(num / kanjisPerPage);
   let first_kanji_number = pageNumber * 50 - 49;
   let last_kanji_number = pageNumber * 50;
-  let char_index = num - first_kanji_number;
+  let char_index = num - first_kanji_number; // only works for kanji deck but not hanzi deck
+  // char_index should be set to getIndex().  getIndex() should use HK_num to find correct index
   let lastStudiedForage = "last_" + deck;
-  const localStorage = window.localStorage;
+  let lastStudiedIndex = "last_" + deck + "_index";
 
   const [loaded, setLoaded] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [kanjis, setKanjis] = useState([]);
   const [curKanji, setCurKanji] = useState(num);
-  const [index, setIndex] = useState(char_index);
+  const [index, setIndex] = useState(char_index); // set this with getIndex() in useEffect
   const [page, setPage] = useState(pageNumber);
 
   useEffect(() => {
@@ -81,18 +83,22 @@ const Kanji = (props) => {
             })
             .then((resp) => {
               setKanjis(resp);
-              getIndex(resp);
+              return resp;
             })
             .catch((resp) => console.log(resp));
         } else {
           setKanjis(response);
-          getIndex(response);
           return response;
         }
       })
       .then((kanjis_response) => {
-        let lastStudiedItem = JSON.stringify(kanjis_response[char_index].attributes);
-        localStorage.setItem(lastStudiedForage, lastStudiedItem);
+        console.log("kanjis_response = " + kanjis_response);
+        console.log("char_index = " + char_index);
+        console.log("this is kanjis_response[char_index] = " + kanjis_response[char_index]);
+        let lastStudiedItem = kanjis_response[char_index].attributes;
+
+        localStorage.setItem(lastStudiedForage, JSON.stringify(lastStudiedItem));
+        localStorage.setItem(lastStudiedIndex, `${num}`);
 
       })
       .then((value) => {
@@ -105,21 +111,6 @@ const Kanji = (props) => {
     return localForage.setItem(item, data);
   };
 
-  const getIndex = (input) => {
-    const data_for_get_index = input.map((item) => {
-      return item.attributes;
-    });
-
-    let idx1 = 0;
-    let cur_char = "";
-    // let char_to_find = props.match.params.char;
-    // for(idx1 = 0; idx1 < data_for_get_index.length; idx1++){
-    //   cur_char = data_for_get_index[idx1].char;
-    //   if(char_to_find = cur_char){
-    //     setIndex(idx1);
-    //   }
-    // }
-  };
 
   // *** find the index of the kanji received through params
   const getKanjis = (direction, new_page) => {
@@ -139,13 +130,18 @@ const Kanji = (props) => {
                 setKanjis(resp);
                 setIndex(0);
                 setPage((old_page) => old_page + 1);
-                localStorage.setItem(lastStudiedForage, JSON.stringify(resp[0].attributes));
+                let new_last = resp[0].attributes;
+                localStorage.setItem(lastStudiedForage, JSON.stringify(new_last));
+                localStorage.setItem(lastStudiedIndex, `${new_last.number}`);
 
               } else {
                 setKanjis(resp);
                 setIndex(resp.length - 1);
                 setPage((old_page) => old_page - 1);
-                localStorage.setItem(lastStudiedForage, JSON.stringify(resp[resp.length - 1].attributes));
+                let new_last = resp[resp.length - 1].attributes;
+                let new_last_index = resp[0].attributes.number + resp.length - 1;
+                localStorage.setItem(lastStudiedForage, JSON.stringify(new_last));
+                localStorage.setItem(lastStudiedIndex, `${new_last_index}`);
               }
               setLoaded(true);
             })
@@ -155,13 +151,18 @@ const Kanji = (props) => {
             setKanjis(response);
             setIndex(0);
             setPage((old_page) => old_page + 1);
-            localStorage.setItem(lastStudiedForage, JSON.stringify(response[0].attributes));
+            let new_last = response[0].attributes;
+            localStorage.setItem(lastStudiedForage, JSON.stringify(new_last));
+            localStorage.setItem(lastStudiedIndex, `${new_last.number}`);
           }
           else{
             setKanjis(response);
             setIndex(response.length - 1);
             setPage((old_page) => old_page - 1);
-            localStorage.setItem(lastStudiedForage, JSON.stringify(response[response.length - 1].attributes));
+            let new_last = response[response.length - 1].attributes;
+            let new_last_index = response[0].attributes.number + response.length - 1;
+            localStorage.setItem(lastStudiedForage, JSON.stringify(new_last));
+            localStorage.setItem(lastStudiedIndex, `${new_last_index}`);
 
           }
           setLoaded(true);
@@ -187,6 +188,8 @@ const Kanji = (props) => {
         let new_index = index + 1;
         setIndex(new_index);
         localStorage.setItem(lastStudiedForage, JSON.stringify(data[new_index]));
+        localStorage.setItem(lastStudiedIndex, `${data[0].number + new_index}`);
+
       }
     } else {
       if (data[index].number === 3035) {
@@ -197,6 +200,7 @@ const Kanji = (props) => {
         let new_index = index + 1;
         setIndex(new_index);
         localStorage.setItem(lastStudiedForage, JSON.stringify(data[new_index]));
+        localStorage.setItem(lastStudiedIndex, `${data[0].number + new_index}`);
       }
     }
   };
@@ -208,6 +212,7 @@ const Kanji = (props) => {
       getKanjis("down", new_page);
     } else {
       localStorage.setItem(lastStudiedForage, JSON.stringify(data[index-1]));
+      localStorage.setItem(lastStudiedIndex, `${data[0].number + index - 1}`);
       setIndex((old_index) => old_index - 1);
 
     }
