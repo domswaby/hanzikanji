@@ -71,6 +71,17 @@ const LastStudiedChar = styled.div`
   button{
     width: 100%;
     height: 100%;
+    padding: 0;
+    a{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      vertical-align: middle;
+      height: 100%;
+      color: var(--light-black);
+      width: 100%;
+    }
   }
 `;
 const InnerInputWrap = styled.div`
